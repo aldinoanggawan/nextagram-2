@@ -6,7 +6,8 @@ const Header = styled.header`
   padding: 0.5em 0;
   border: 1px solid #dbdbdb;
   border-top: none;
-  position: relative;
+  position: sticky;
+  top: 0;
 
   .container {
     width: 95%;
