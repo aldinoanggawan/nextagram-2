@@ -2,25 +2,35 @@ import React from 'react'
 import styled from 'styled-components'
 
 const Header = styled.header`
-  padding: 0 1em;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  background-color: white;
+  padding: 0.5em 0;
   border: 1px solid #dbdbdb;
   border-top: none;
-  height: 54px;
   position: relative;
+
+  .container {
+    width: 95%;
+    max-width: 900px;
+    margin: 0 auto;
+    align-items: center;
+  }
+
+  .row {
+    display: flex;
+    justify-content: space-between;
+  }
 
   .logo {
     width: 100px;
   }
 
   .input {
-    border: 1px solid #dbdbdb;
     height: 20px;
     width: 180px;
+    border: 1px solid #dbdbdb;
     border-radius: 3px;
     background-color: #fafafa;
+    text-align: center;
   }
 
   .nav__list {
@@ -28,8 +38,8 @@ const Header = styled.header`
     padding: 0;
     list-style: none;
     display: flex;
-    align-items: center;
     justify-content: space-between;
+    align-items: center;
   }
 
   .nav__item + .nav__item {
@@ -50,22 +60,24 @@ const Header = styled.header`
 const Navbar = () => {
   return (
     <Header>
-      <img className='logo' src='./nav-logo.svg' alt='navbar-logo' />
-      <input className='input' type='text' />
-      <nav className='nav'>
-        <ul className='nav__list'>
-          <li className='nav__item'>
-            <a className='nav__link' href='/'>
-              Home
-            </a>
-          </li>
-          <li className='nav__item'>
-            <a className='nav__link' href='/'>
-              Sign In
-            </a>
-          </li>
-        </ul>
-      </nav>
+      <div className='container row'>
+        <img className='logo' src='./nav-logo.svg' alt='navbar-logo' />
+        <input className='input' type='text' placeholder='Search' />
+        <nav className='nav'>
+          <ul className='nav__list'>
+            <li className='nav__item'>
+              <a className='nav__link' href='/'>
+                Home
+              </a>
+            </li>
+            <li className='nav__item'>
+              <a className='nav__link' href='/'>
+                Sign In
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </div>
     </Header>
   )
 }
