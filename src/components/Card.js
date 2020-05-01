@@ -11,7 +11,6 @@ const Container = styled.div`
 
 const CardLayout = styled.div`
   margin: 2em 0;
-  /* padding: 0.5em; */
   border: 1px solid #dbdbdb;
   border-radius: 3px;
   background-color: white;
@@ -52,7 +51,7 @@ const CardLayout = styled.div`
   }
 
   .card-header__item span {
-    margin-left: 1em;
+    margin-left: 0.75em;
   }
 
   .card-header__item--first {
@@ -174,7 +173,7 @@ const Card = () => {
               </section>
               <section className='card-description__text'>
                 <strong className='card-description__text--username'>
-                  aldinoanggawan
+                  {image.author}
                 </strong>
                 <span>
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
