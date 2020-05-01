@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+import { NavLink } from 'react-router-dom'
 
 const Header = styled.header`
   background-color: white;
@@ -53,6 +54,10 @@ const Header = styled.header`
     text-transform: uppercase;
   }
 
+  .nav__link--selected {
+    color: #38cfd9;
+  }
+
   .nav__link:hover {
     opacity: 0.6;
   }
@@ -67,14 +72,24 @@ const Navbar = () => {
         <nav className='nav'>
           <ul className='nav__list'>
             <li className='nav__item'>
-              <a className='nav__link' href='/'>
+              <NavLink
+                exact
+                to='/'
+                className='nav__link'
+                activeClassName='nav__link--selected'
+              >
                 Home
-              </a>
+              </NavLink>
             </li>
             <li className='nav__item'>
-              <a className='nav__link' href='/'>
+              <NavLink
+                exact
+                to='/sign_in'
+                className='nav__link'
+                activeClassName='nav__link--selected'
+              >
                 Sign In
-              </a>
+              </NavLink>
             </li>
           </ul>
         </nav>
