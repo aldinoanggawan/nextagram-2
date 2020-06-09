@@ -1,31 +1,28 @@
-import {
-  FETCH_IMAGES_REQUEST,
-  FETCH_IMAGES_SUCCESS,
-  FETCH_IMAGES_FAILURE,
-} from '../actions/actionTypes'
+import * as actionTypes from '../actions/actionTypes'
 
 const initialState = {
   isLoading: false,
-  images: [],
+  data: [],
   error: '',
 }
 
-const images = (state = initialState, action) => {
+const users = (state = initialState, action) => {
   switch (action.type) {
-    case FETCH_IMAGES_REQUEST:
+    case actionTypes.FETCH_USERS_REQUEST:
       return {
         ...state,
         isLoading: true,
       }
-    case FETCH_IMAGES_SUCCESS:
+    case actionTypes.FETCH_USERS_SUCCESS:
       return {
         ...state,
         isLoading: false,
-        images: action.payload,
+        data: action.payload,
       }
-    case FETCH_IMAGES_FAILURE:
+    case actionTypes.FETCH_USERS_FAILURE:
       return {
         ...state,
+        isLoading: false,
         error: action.payload,
       }
     default:
@@ -33,4 +30,4 @@ const images = (state = initialState, action) => {
   }
 }
 
-export default images
+export default users

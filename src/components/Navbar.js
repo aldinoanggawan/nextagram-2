@@ -8,7 +8,12 @@ const Header = styled.header`
   border: 1px solid #dbdbdb;
   border-top: none;
   position: sticky;
+  z-index: 1;
   top: 0;
+
+  input:focus {
+    outline: none;
+  }
 
   .container {
     width: 95%;

@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux'
-import images from './images'
+import users from './users'
 
 const rootReducer = combineReducers({
-  images,
+  users,
 })
 
 export default rootReducer

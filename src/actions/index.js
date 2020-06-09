@@ -1,36 +1,30 @@
-import {
-  FETCH_IMAGES_REQUEST,
-  FETCH_IMAGES_SUCCESS,
-  FETCH_IMAGES_FAILURE,
-} from './actionTypes'
+import * as actionTypes from './actionTypes'
 import Axios from 'axios'
 
-export const fetchImagesRequest = () => ({
-  type: FETCH_IMAGES_REQUEST,
+const fetchUsersRequest = () => ({
+  type: actionTypes.FETCH_USERS_REQUEST,
 })
 
-const fetchImagesSuccess = images => ({
-  type: FETCH_IMAGES_SUCCESS,
-  payload: images,
+const fetchUsersSuccess = data => ({
+  type: actionTypes.FETCH_USERS_SUCCESS,
+  payload: data,
 })
 
-const fetchImagesFailure = error => ({
-  type: FETCH_IMAGES_FAILURE,
+const fetchUsersFailure = error => ({
+  type: actionTypes.FETCH_USERS_FAILURE,
   payload: error,
 })
 
-export const fetchImages = () => {
+export const fetchUsers = () => {
   return async dispatch => {
-    dispatch(fetchImagesRequest())
+    dispatch(fetchUsersRequest())
     try {
-      const response = await Axios.get(
-        'https://picsum.photos/v2/list?page=2&limit=10'
+      const { data } = await Axios.get(
+        `https://insta.nextacademy.com/api/v1/users`
       )
-      const images = await response.data
-      dispatch(fetchImagesSuccess(images))
-    } catch (error) {
-      const errorMsg = error.message
-      dispatch(fetchImagesFailure(errorMsg))
+      dispatch(fetchUsersSuccess(data))
+    } catch ({ message }) {
+      dispatch(fetchUsersFailure(message))
     }
   }
 }
