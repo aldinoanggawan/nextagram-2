@@ -91,7 +91,9 @@ export const BioItem = styled.div`
   }
 
   .bio-item__avatar {
-    max-width: 100%;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
   }
 
   .bio-item__username {
@@ -132,14 +134,15 @@ export const CardLayout = styled.div`
     border-radius: 50px;
     overflow: hidden;
 
-    display: flex;
+    /* display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: center; */
   }
 
   .avatar {
     width: 100%;
-    border: none;
+    height: 100%;
+    object-fit: cover;
   }
 
   .card-header {
