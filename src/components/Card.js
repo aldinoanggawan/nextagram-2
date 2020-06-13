@@ -1,12 +1,12 @@
 import React from 'react'
-import { Container, CardLayout } from '../styles/content'
+import { CardContainer, CardLayout, StyledLink } from '../styles/content'
 import LoveAction from '../love-action.svg'
 import UserImages from '../containers/UserImages'
 
 const Card = ({ id, profileImage, username }) => {
   return (
     <>
-      <Container>
+      <CardContainer>
         <CardLayout>
           <header className='card-header row'>
             <div className='card-header__item card-header__item--first'>
@@ -17,7 +17,9 @@ const Card = ({ id, profileImage, username }) => {
                   alt='random-avatar'
                 />
               </div>
-              <span className='card-header__username'>{username}</span>
+              <span className='card-header__username'>
+                <StyledLink to={`/users/${id}`}>{username}</StyledLink>
+              </span>
             </div>
             <div className='card-header__item'>
               <a className='card-header__item--button' href='/'>
@@ -42,9 +44,9 @@ const Card = ({ id, profileImage, username }) => {
               </span>
             </section>
             <section className='card-description__text'>
-              <strong className='card-description__text--username'>
-                {username}
-              </strong>
+              <span className='card-description__text--username'>
+                <StyledLink to={`/users/${id}`}>{username}</StyledLink>
+              </span>
               <span>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
                 eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
@@ -68,7 +70,7 @@ const Card = ({ id, profileImage, username }) => {
             </form>
           </footer>
         </CardLayout>
-      </Container>
+      </CardContainer>
     </>
     // <PageContainer>
     //   <CardLayout>

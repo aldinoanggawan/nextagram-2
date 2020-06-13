@@ -2,13 +2,13 @@ import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import * as actions from '../actions'
 import { Instagram } from 'react-content-loader'
-import { Container } from '../styles/content'
+import { CardContainer } from '../styles/content'
 
-import Navbar from '../components/Navbar'
 import Card from '../components/Card'
 import styled from 'styled-components'
 
 const Div = styled.div`
+  padding-top: 0.1em;
   background-color: #fafafa;
 `
 
@@ -17,16 +17,17 @@ const Homepage = () => {
   const dispatch = useDispatch()
 
   useEffect(() => {
-    dispatch(actions.fetchUsers())
-  }, [dispatch])
+    if (!data.length) {
+      dispatch(actions.fetchUsers())
+    }
+  }, [dispatch, data.length])
   return (
     <>
       <Div>
-        <Navbar />
         {isLoading ? (
-          <Container>
+          <CardContainer>
             <Instagram />
-          </Container>
+          </CardContainer>
         ) : (
           data.length !== 0 &&
           data.map(data => <Card key={data.id} {...data} />)

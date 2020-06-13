@@ -11,41 +11,35 @@ const P = styled.p`
 `
 
 const UserImages = ({ userId }) => {
-  //     const userImagesState = useSelector(state => state.users.images)
-  //     const dispatch = useDispatch()
-
-  //     const data = userImagesState.data
-  //     const isLoading = userImagesState.isLoading
-
-  //     useEffect(() => {
-  //       dispatch(actions.fetchUserImages(userId))
-  //     }, [])
-
-  //     return (
-  //       <>
-  //         {userImagesState.length &&
-  //           userImagesState.map(userImage => (
-  //             <p key={userImage.id}>User Images with id: {userImage.id}</p>
-  //           ))}
-  //       </>
-  //     )
-
   const [isLoading, setIsLoading] = useState(true)
   const [userImages, setUserImages] = useState([])
 
   useEffect(() => {
+    const CancelToken = Axios.CancelToken
+    const source = CancelToken.source()
+
     const fetchUserImages = async () => {
       try {
         const { data } = await Axios.get(
-          `https://insta.nextacademy.com/api/v2/images?userId=${userId}`
+          `https://insta.nextacademy.com/api/v2/images?userId=${userId}`,
+          {
+            cancelToken: source.token,
+          }
         )
         setUserImages(data)
         setIsLoading(false)
       } catch (error) {
-        console.log('Error', error)
+        if (Axios.isCancel(error)) {
+          console.log('cancelled user images')
+        } else {
+          console.log(error)
+        }
       }
     }
     fetchUserImages()
+    return () => {
+      source.cancel()
+    }
   }, [userId])
 
   return (

@@ -1,8 +1,105 @@
 import styled from 'styled-components'
+import { Link } from 'react-router-dom'
 
-export const Container = styled.div`
+export const StyledLink = styled(Link)`
+  text-decoration: none;
+
+  &:focus,
+  &:hover {
+    opacity: 0.7;
+  }
+`
+
+export const Img = styled.img`
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+`
+
+export const CardContainer = styled.div`
   max-width: 580px;
   margin: 0 auto;
+`
+
+export const ProfilePageContainer = styled.section`
+  background-color: #fafafa;
+  /* padding-bottom: 2em; */
+`
+
+export const ProfileBioContainer = styled.div`
+  max-width: 900px;
+  width: 100%;
+  margin: 0 auto;
+  border-bottom: 1px solid #dbdbdb;
+  padding-bottom: 1em;
+`
+
+export const ProfileImagesContainer = styled.div`
+  max-width: 900px;
+  width: 100%;
+  margin: 2em auto 0;
+  text-align: center;
+`
+
+export const GridContainer = styled.div`
+  /* display: grid;
+  grid-template-columns: repeat(3, minmax(300px, 1fr));
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 1em;
+  grid-auto-rows: 200px; */
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  justify-content: center;
+  gap: 1rem;
+  grid-auto-rows: 290px;
+
+  @media (max-width: 900px) {
+    gap: 5px;
+    grid-template-columns: repeat(3, 1fr);
+    grid-auto-rows: calc(33vw - 10px);
+  }
+`
+
+export const GridImg = styled.img`
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+`
+
+export const BioItem = styled.div`
+  padding: 2em 0 0;
+  text-align: center;
+
+  .bio-item__avatar-container {
+    margin: 0 auto;
+    width: 170px;
+    height: 170px;
+    border-radius: 50%;
+    overflow: hidden;
+
+    @media (max-width: 900px) {
+      width: 140px;
+      height: 140px;
+    }
+  }
+
+  .bio-item__avatar {
+    max-width: 100%;
+  }
+
+  .bio-item__username {
+    font-size: 1.9rem;
+    font-weight: 300;
+    letter-spacing: 0.5px;
+    margin: 0.1em 0 0;
+  }
 `
 
 export const CardLayout = styled.div`
@@ -101,6 +198,7 @@ export const CardLayout = styled.div`
 
   .card-description__text--username {
     margin-right: 0.4em;
+    font-weight: bold;
   }
 
   .card-description__time {
@@ -131,6 +229,16 @@ export const CardLayout = styled.div`
     font-size: 15px;
     font-weight: bold;
   }
+
+  @media (max-width: 550px) {
+    border-left: none;
+    border-right: none;
+  }
+`
+
+export const ProfileContainer = styled.section`
+  max-width: 1000px;
+  margin: 0 auto;
 `
 
 // export const PageContainer = styled.div`

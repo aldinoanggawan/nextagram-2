@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { NavLink } from 'react-router-dom'
+import { StyledLink } from '../styles/content'
 
 const Header = styled.header`
   background-color: white;
@@ -72,7 +73,9 @@ const Navbar = () => {
   return (
     <Header>
       <div className='container row'>
-        <img className='logo' src='./nav-logo.svg' alt='navbar-logo' />
+        <StyledLink to='/'>
+          <img className='logo' src='/nav-logo.svg' alt='navbar-logo' />
+        </StyledLink>
         <input className='input' type='text' placeholder='Search' />
         <nav className='nav'>
           <ul className='nav__list'>
