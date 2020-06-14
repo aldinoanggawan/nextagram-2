@@ -1,29 +1,16 @@
-import React, { useEffect } from 'react'
-import { useSelector, useDispatch } from 'react-redux'
-import * as actions from '../actions'
+import React from 'react'
+import useFetchUsers from '../hooks/useFetchUsers'
 import { Instagram } from 'react-content-loader'
-import { CardContainer } from '../styles/content'
-
+import { HomepageContainer, CardContainer } from '../styles/content'
 import Card from '../components/Card'
-import styled from 'styled-components'
-
-const Div = styled.div`
-  padding-top: 0.1em;
-  background-color: #fafafa;
-`
 
 const Homepage = () => {
-  const { isLoading, data } = useSelector(state => state.users)
-  const dispatch = useDispatch()
+  // custom hook
+  const { isLoading, data } = useFetchUsers()
 
-  useEffect(() => {
-    if (!data.length) {
-      dispatch(actions.fetchUsers())
-    }
-  }, [dispatch, data.length])
   return (
     <>
-      <Div>
+      <HomepageContainer>
         {isLoading ? (
           <CardContainer>
             <Instagram />
@@ -32,7 +19,7 @@ const Homepage = () => {
           data.length !== 0 &&
           data.map(data => <Card key={data.id} {...data} />)
         )}
-      </Div>
+      </HomepageContainer>
     </>
   )
 }

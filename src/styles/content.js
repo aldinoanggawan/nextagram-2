@@ -23,6 +23,11 @@ export const Img = styled.img`
   margin: auto;
 `
 
+export const HomepageContainer = styled.div`
+  padding-top: 0.1em;
+  background-color: #fafafa;
+`
+
 export const CardContainer = styled.div`
   max-width: 580px;
   margin: 0 auto;
@@ -237,6 +242,13 @@ export const CardLayout = styled.div`
     border-left: none;
     border-right: none;
   }
+`
+
+export const UserImagesError = styled.p`
+  margin: 0;
+  padding: 6em 0;
+  opacity: 0.7;
+  text-align: center;
 `
 
 export const ProfileContainer = styled.section`

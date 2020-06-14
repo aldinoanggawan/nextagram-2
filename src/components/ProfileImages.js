@@ -3,24 +3,29 @@ import {
   GridContainer,
   GridImg,
   ProfileImagesContainer,
+  UserImagesError,
 } from '../styles/content'
 import Loader from './Loader'
 
 const ProfileImages = ({ isLoading, data }) => {
   return (
-    <ProfileImagesContainer>
+    <>
       {isLoading ? (
-        <Loader />
+        <ProfileImagesContainer>
+          <Loader />
+        </ProfileImagesContainer>
       ) : data.length ? (
-        <GridContainer>
-          {data.map(({ id, url }) => (
-            <GridImg key={id} src={url} alt='oops img not found' />
-          ))}
-        </GridContainer>
+        <ProfileImagesContainer>
+          <GridContainer>
+            {data.map(({ id, url }) => (
+              <GridImg key={id} src={url} alt='oops img not found' />
+            ))}
+          </GridContainer>
+        </ProfileImagesContainer>
       ) : (
-        <p>User has not uploaded any photo yet</p>
+        <UserImagesError>User has not uploaded any photo yet</UserImagesError>
       )}
-    </ProfileImagesContainer>
+    </>
   )
 }
 
