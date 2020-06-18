@@ -1,19 +1,20 @@
+import { ConnectedRouter } from 'connected-react-router'
 import React from 'react'
 import ReactDOM from 'react-dom'
-import GlobalStyle from './styles/globalStyle'
-import App from './App'
-import * as serviceWorker from './serviceWorker'
 import { Provider } from 'react-redux'
-import store from './configureStore'
-import { BrowserRouter as Router } from 'react-router-dom'
+
+import App from './App'
+import store, { history } from './configureStore'
+import * as serviceWorker from './serviceWorker'
+import GlobalStyle from './styles/globalStyle'
 
 ReactDOM.render(
   <Provider store={store}>
     <React.StrictMode>
-      <Router>
+      <ConnectedRouter history={history}>
         <GlobalStyle />
         <App />
-      </Router>
+      </ConnectedRouter>
     </React.StrictMode>
   </Provider>,
   document.getElementById('root')

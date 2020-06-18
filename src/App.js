@@ -1,11 +1,14 @@
 import React from 'react'
-import { Switch, Route } from 'react-router-dom'
+import { Switch, Route, Redirect } from 'react-router-dom'
+import useIsLoggedIn from './hooks/useIsLoggedIn'
 
 import Navbar from './components/Navbar'
 import Homepage from './pages/Homepage'
 import ProfilePage from './pages/ProfilePage'
+import LoginPage from './pages/LoginPage'
 
-function App() {
+const App = () => {
+  const { isLoggedIn } = useIsLoggedIn()
   return (
     <>
       <Navbar />
@@ -15,6 +18,9 @@ function App() {
         </Route>
         <Route path='/users/:userid'>
           <ProfilePage />
+        </Route>
+        <Route exact path='/login'>
+          {isLoggedIn ? <Redirect to='/' /> : <LoginPage />}
         </Route>
       </Switch>
     </>

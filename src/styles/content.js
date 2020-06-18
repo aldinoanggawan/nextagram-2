@@ -72,6 +72,11 @@ export const GridContainer = styled.div`
   }
 `
 
+export const LoginPageContainer = styled.div`
+  padding: 5em 0 10em;
+  background-color: #fafafa;
+`
+
 export const GridImg = styled.img`
   width: 100%;
   height: 100%;

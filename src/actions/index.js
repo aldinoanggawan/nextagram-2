@@ -1,5 +1,7 @@
-import * as actionTypes from './actionTypes'
 import Axios from 'axios'
+import { push } from 'connected-react-router'
+
+import * as actionTypes from './actionTypes'
 
 const fetchUsersRequest = () => ({
   type: actionTypes.FETCH_USERS_REQUEST,
@@ -88,3 +90,68 @@ export const fetchUserProfileImages = id => {
 export const cleanupProfile = () => ({
   type: actionTypes.CLEANUP_PROFILE,
 })
+
+const loginRequest = () => ({
+  type: actionTypes.LOGIN_REQUEST,
+})
+
+const loginSuccess = token => ({
+  type: actionTypes.LOGIN_SUCCESS,
+  payload: token,
+})
+
+const loginFailure = error => ({
+  type: actionTypes.LOGIN_FAILURE,
+  payload: error,
+})
+
+export const login = cred => {
+  return async dispatch => {
+    dispatch(loginRequest())
+    const config = {
+      header: {
+        'Content-Type': 'application/json',
+      },
+    }
+    try {
+      const { data } = await Axios.post(
+        `https://insta.nextacademy.com/api/v1/login`,
+        cred,
+        config
+      )
+      localStorage.setItem('auth_token', data.auth_token)
+      dispatch(loginSuccess(data))
+      dispatch(push(`/users/${data.user.id}`))
+    } catch (error) {
+      const { message } = error.response.data
+      dispatch(loginFailure(message))
+    }
+  }
+}
+
+const logoutRequest = () => ({
+  type: actionTypes.LOGOUT_REQUEST,
+})
+
+const logoutSuccess = () => ({
+  type: actionTypes.LOGOUT_SUCCESS,
+})
+
+const logoutFailure = error => ({
+  type: actionTypes.LOGOUT_FAILURE,
+  payload: error,
+})
+
+export const logout = () => {
+  return dispatch => {
+    dispatch(logoutRequest())
+    try {
+      localStorage.removeItem('auth_token')
+      dispatch(logoutSuccess())
+      dispatch(push('/'))
+    } catch (error) {
+      const errorMsg = error.message
+      dispatch(logoutFailure(errorMsg))
+    }
+  }
+}
