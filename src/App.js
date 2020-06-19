@@ -1,5 +1,6 @@
 import React from 'react'
-import { Switch, Route, Redirect } from 'react-router-dom'
+import { Redirect, Route, Switch } from 'react-router-dom'
+import { Slide, ToastContainer } from 'react-toastify'
 import useIsLoggedIn from './hooks/useIsLoggedIn'
 
 import Navbar from './components/Navbar'
@@ -11,6 +12,18 @@ const App = () => {
   const { isLoggedIn } = useIsLoggedIn()
   return (
     <>
+      <ToastContainer
+        transition={Slide}
+        position='top-center'
+        autoClose={2000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover={false}
+      />
       <Navbar />
       <Switch>
         <Route exact path='/'>

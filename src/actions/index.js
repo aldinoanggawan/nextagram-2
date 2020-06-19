@@ -2,6 +2,7 @@ import Axios from 'axios'
 import { push } from 'connected-react-router'
 
 import * as actionTypes from './actionTypes'
+import { toast } from 'react-toastify'
 
 const fetchUsersRequest = () => ({
   type: actionTypes.FETCH_USERS_REQUEST,
@@ -121,10 +122,12 @@ export const login = cred => {
       )
       localStorage.setItem('auth_token', data.auth_token)
       dispatch(loginSuccess(data))
+      toast.success(data.message)
       dispatch(push(`/users/${data.user.id}`))
     } catch (error) {
       const { message } = error.response.data
       dispatch(loginFailure(message))
+      toast.warn(message)
     }
   }
 }
@@ -148,6 +151,7 @@ export const logout = () => {
     try {
       localStorage.removeItem('auth_token')
       dispatch(logoutSuccess())
+      toast.success('Successfully signed out.')
       dispatch(push('/'))
     } catch (error) {
       const errorMsg = error.message
