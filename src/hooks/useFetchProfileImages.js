@@ -2,16 +2,16 @@ import { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { fetchUserProfileImages, cleanupProfile } from '../actions'
 
-const useFetchProfileImages = id => {
+const useFetchProfileImages = userId => {
   const profileImages = useSelector(state => state.profile.images)
   const dispatch = useDispatch()
 
   useEffect(() => {
-    dispatch(fetchUserProfileImages(id))
+    dispatch(fetchUserProfileImages(userId))
     return () => {
       dispatch(cleanupProfile())
     }
-  }, [dispatch, id])
+  }, [dispatch, userId])
 
   return profileImages
 }

@@ -1,6 +1,6 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
-import useIsLoggedIn from '../hooks/useIsLoggedIn'
+import useIsAuthenticated from '../hooks/useIsAuthenticated'
 import useLogout from '../hooks/useLogout'
 
 import { StyledLink } from '../styles/content'
@@ -8,7 +8,7 @@ import { Button, Header } from '../styles/nav'
 
 const Navbar = () => {
   // custom hooks
-  const { isLoggedIn } = useIsLoggedIn()
+  const { authId, isLoggedIn } = useIsAuthenticated()
   const { handleLogout } = useLogout()
 
   return (
@@ -31,11 +31,23 @@ const Navbar = () => {
               </NavLink>
             </li>
             {isLoggedIn ? (
-              <li className='nav__item'>
-                <Button onClick={handleLogout} className='nav__link'>
-                  Logout
-                </Button>
-              </li>
+              <>
+                <li className='nav__item'>
+                  <NavLink
+                    exact
+                    to={`/users/${authId}`}
+                    className='nav__link'
+                    activeClassName='nav__link--selected'
+                  >
+                    My Profile
+                  </NavLink>
+                </li>
+                <li className='nav__item'>
+                  <Button onClick={handleLogout} className='nav__link'>
+                    Logout
+                  </Button>
+                </li>
+              </>
             ) : (
               <li className='nav__item'>
                 <NavLink

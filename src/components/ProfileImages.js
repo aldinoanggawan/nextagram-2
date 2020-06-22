@@ -3,11 +3,11 @@ import {
   GridContainer,
   GridImg,
   ProfileImagesContainer,
-  UserImagesError,
+  ProfileImagesError,
 } from '../styles/content'
 import Loader from './Loader'
 
-const ProfileImages = ({ isLoading, data }) => {
+const ProfileImages = ({ authId, data, isLoading, userId }) => {
   return (
     <>
       {isLoading ? (
@@ -23,7 +23,17 @@ const ProfileImages = ({ isLoading, data }) => {
           </GridContainer>
         </ProfileImagesContainer>
       ) : (
-        <UserImagesError>User has not uploaded any photo yet</UserImagesError>
+        <ProfileImagesContainer>
+          {userId === authId.toString() ? (
+            <ProfileImagesError>
+              You have not uploaded any photo yet
+            </ProfileImagesError>
+          ) : (
+            <ProfileImagesError>
+              User has not uploaded any photo yet
+            </ProfileImagesError>
+          )}
+        </ProfileImagesContainer>
       )}
     </>
   )

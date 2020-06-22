@@ -17,7 +17,7 @@ const useFetchUserImages = userId => {
             cancelToken: source.token,
           }
         )
-        setUserImages(data)
+        setUserImages(data.sort((a, b) => b.id - a.id))
         setIsLoading(false)
       } catch (error) {
         if (Axios.isCancel(error)) {

@@ -1,7 +1,7 @@
 import React from 'react'
 import { Redirect, Route, Switch } from 'react-router-dom'
 import { Slide, ToastContainer } from 'react-toastify'
-import useIsLoggedIn from './hooks/useIsLoggedIn'
+import useIsAuthenticated from './hooks/useIsAuthenticated'
 
 import Navbar from './components/Navbar'
 import Homepage from './pages/Homepage'
@@ -9,7 +9,7 @@ import ProfilePage from './pages/ProfilePage'
 import LoginPage from './pages/LoginPage'
 
 const App = () => {
-  const { isLoggedIn } = useIsLoggedIn()
+  const { isLoggedIn } = useIsAuthenticated()
   return (
     <>
       <ToastContainer
@@ -29,7 +29,7 @@ const App = () => {
         <Route exact path='/'>
           <Homepage />
         </Route>
-        <Route path='/users/:userid'>
+        <Route path='/users/:userId'>
           <ProfilePage />
         </Route>
         <Route exact path='/login'>

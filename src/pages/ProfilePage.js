@@ -1,18 +1,28 @@
-import React from 'react'
-import { ProfilePageContainer } from '../styles/content'
+import React, { useState } from 'react'
 import { useParams } from 'react-router-dom'
-import Loader from '../components/Loader'
 import useFetchProfile from '../hooks/useFetchProfile'
 import useFetchProfileImages from '../hooks/useFetchProfileImages'
+import useIsAuthenticated from '../hooks/useIsAuthenticated'
+
+import ImageUpload from '../components/ImageUpload'
+import Loader from '../components/Loader'
 import ProfileBio from '../components/ProfileBio'
 import ProfileImages from '../components/ProfileImages'
+import { ProfilePageContainer } from '../styles/content'
 
 const ProfilePage = () => {
-  const { userid } = useParams()
+  const { userId } = useParams()
+
+  const [isImageUploadOpen, setIsImageUploadOpen] = useState(false)
 
   // custom hooks
-  const { isLoading, data } = useFetchProfile(userid)
-  const images = useFetchProfileImages(userid)
+  const { isLoading, data } = useFetchProfile(userId)
+  const images = useFetchProfileImages(userId)
+  const { authId } = useIsAuthenticated()
+
+  const toggleImageUpload = () => {
+    setIsImageUploadOpen(!isImageUploadOpen)
+  }
 
   return (
     <ProfilePageContainer>
@@ -20,8 +30,14 @@ const ProfilePage = () => {
         <Loader />
       ) : Object.keys(data).length || images.data.length ? (
         <>
-          <ProfileBio {...data} />
-          <ProfileImages {...images} />
+          <ProfileBio
+            authId={authId}
+            toggleImageUpload={toggleImageUpload}
+            userId={userId}
+            {...data}
+          />
+          <ImageUpload isImageUploadOpen={isImageUploadOpen} />
+          <ProfileImages authId={authId} userId={userId} {...images} />
         </>
       ) : // <BioItem>
       //   <p>Uh oh.. The user you're looking for is private / not registered</p>

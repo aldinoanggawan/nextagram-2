@@ -4,6 +4,10 @@ import { push } from 'connected-react-router'
 import * as actionTypes from './actionTypes'
 import { toast } from 'react-toastify'
 
+export const cleanupProfile = () => ({
+  type: actionTypes.CLEANUP_PROFILE,
+})
+
 const fetchUsersRequest = () => ({
   type: actionTypes.FETCH_USERS_REQUEST,
 })
@@ -88,10 +92,6 @@ export const fetchUserProfileImages = id => {
   }
 }
 
-export const cleanupProfile = () => ({
-  type: actionTypes.CLEANUP_PROFILE,
-})
-
 const loginRequest = () => ({
   type: actionTypes.LOGIN_REQUEST,
 })
@@ -120,10 +120,12 @@ export const login = cred => {
         cred,
         config
       )
-      localStorage.setItem('auth_token', data.auth_token)
+      const { auth_token, message, user } = await data
+      localStorage.setItem('id', user.id)
+      localStorage.setItem('auth_token', auth_token)
       dispatch(loginSuccess(data))
-      toast.success(data.message)
-      dispatch(push(`/users/${data.user.id}`))
+      toast.success(message)
+      dispatch(push(`/users/${user.id}`))
     } catch (error) {
       const { message } = error.response.data
       dispatch(loginFailure(message))
@@ -150,12 +152,55 @@ export const logout = () => {
     dispatch(logoutRequest())
     try {
       localStorage.removeItem('auth_token')
+      localStorage.removeItem('id')
       dispatch(logoutSuccess())
       toast.success('Successfully signed out.')
       dispatch(push('/'))
     } catch (error) {
       const errorMsg = error.message
       dispatch(logoutFailure(errorMsg))
+    }
+  }
+}
+
+const postImageRequest = () => ({
+  type: actionTypes.POST_IMAGE_REQUEST,
+})
+
+const postImageSuccess = response => ({
+  type: actionTypes.POST_IMAGE_SUCCESS,
+  payload: response,
+})
+
+const postImageFailure = error => ({
+  type: actionTypes.POST_IMAGE_FAILURE,
+  payload: error,
+})
+
+export const postImage = formData => {
+  return async dispatch => {
+    dispatch(postImageRequest())
+    const auth_token = localStorage.getItem('auth_token')
+    const id = localStorage.getItem('id')
+    const config = {
+      headers: {
+        'Access-Control-Allow-Origin': '*',
+        Authorization: `Bearer ${auth_token}`,
+        'Content-Type': 'multipart/form-data',
+      },
+    }
+    try {
+      const { data } = await Axios.post(
+        'https://insta.nextacademy.com/api/v1/images/',
+        formData,
+        config
+      )
+      dispatch(postImageSuccess(data))
+      toast.success('Photo uploaded successfully')
+      dispatch(fetchUserProfileImages(id))
+    } catch (error) {
+      const errorMsg = error.message
+      dispatch(postImageFailure(errorMsg))
     }
   }
 }

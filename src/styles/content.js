@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 import { Link } from 'react-router-dom'
 
 export const StyledLink = styled(Link)`
@@ -8,6 +8,58 @@ export const StyledLink = styled(Link)`
   &:hover {
     opacity: 0.7;
   }
+`
+
+export const Input = styled.input`
+  ${({ file }) =>
+    file &&
+    css`
+      width: 0.1px;
+      height: 0.1px;
+      opacity: 0;
+      overflow: hidden;
+      position: absolute;
+      z-index: -1;
+
+      & + label {
+        cursor: pointer;
+        font-size: 0.8rem;
+        color: #f5ac84;
+        border: 1px solid #f5ac84;
+        border-radius: 10px;
+        padding: 0.25em 0.5em;
+      }
+
+      & + label:hover {
+        background-color: #f5ac84;
+        color: #fff;
+      }
+    `}
+
+  ${({ submit }) =>
+    submit &&
+    css`
+      cursor: pointer;
+      display: block;
+      letter-spacing: 3px;
+      font-weight: bold;
+      color: white;
+      margin: 3em 0 0;
+      padding: 0.75em 1.2em;
+      background: #f5ac84;
+      border: none;
+      border-radius: 2px;
+
+      &:hover,
+      &:focus {
+        opacity: 0.7;
+      }
+
+      &:disabled {
+        cursor: not-allowed;
+        opacity: 0.3;
+      }
+    `}
 `
 
 export const Img = styled.img`
@@ -23,9 +75,10 @@ export const Img = styled.img`
   margin: auto;
 `
 
-export const HomepageContainer = styled.div`
-  padding-top: 0.1em;
-  background-color: #fafafa;
+export const ImgPreview = styled.img`
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 `
 
 export const CardContainer = styled.div`
@@ -33,32 +86,7 @@ export const CardContainer = styled.div`
   margin: 0 auto;
 `
 
-export const ProfilePageContainer = styled.section`
-  background-color: #fafafa;
-  /* padding-bottom: 2em; */
-`
-
-export const ProfileBioContainer = styled.div`
-  max-width: 900px;
-  width: 100%;
-  margin: 0 auto;
-  border-bottom: 1px solid #dbdbdb;
-  padding-bottom: 1em;
-`
-
-export const ProfileImagesContainer = styled.div`
-  max-width: 900px;
-  width: 100%;
-  margin: 2em auto 0;
-  text-align: center;
-`
-
 export const GridContainer = styled.div`
-  /* display: grid;
-  grid-template-columns: repeat(3, minmax(300px, 1fr));
-  grid-template-columns: repeat(3, 1fr);
-  grid-gap: 1em;
-  grid-auto-rows: 200px; */
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   justify-content: center;
@@ -72,8 +100,88 @@ export const GridContainer = styled.div`
   }
 `
 
+export const HomepageContainer = styled.div`
+  padding-top: 0.1em;
+  background-color: #fafafa;
+`
+
+export const ImageForm = styled.form`
+  margin-left: 3em;
+  text-align: center;
+`
+
+export const ImagePreviewContainer = styled.div`
+  width: 290px;
+  height: 290px;
+  border: 1px solid #dbdbdb;
+
+  ${({ noImage }) =>
+    noImage &&
+    css`
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+
+      h3 {
+        text-transform: uppercase;
+        text-align: center;
+        opacity: 0.3;
+        margin: 0;
+      }
+
+      p {
+        text-align: center;
+        font-size: 0.7rem;
+        opacity: 0.3;
+        margin: 0.5em 0 0;
+      }
+    `}
+
+  @media (max-width: 700px) {
+    width: 250px;
+    height: 250px;
+  }
+
+  @media (max-width: 500px) {
+    width: 230px;
+    height: 230px;
+  }
+`
+
+export const ImageUploadContainer = styled.div`
+  opacity: ${({ isImageUploadOpen }) => (isImageUploadOpen ? '1' : '0')};
+  max-width: 900px;
+  width: 95%;
+  margin: 0 auto;
+  padding-bottom: 2em;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`
+
 export const LoginPageContainer = styled.div`
   padding: 5em 0 10em;
+  background-color: #fafafa;
+`
+
+export const ProfileBioContainer = styled.div`
+  max-width: 900px;
+  width: 95%;
+  margin: 0 auto;
+  padding-bottom: 1em;
+`
+
+export const ProfileImagesContainer = styled.div`
+  max-width: 900px;
+  width: 100%;
+  margin: 0 auto;
+  padding-top: 2em;
+  text-align: center;
+  border-top: 1px solid #dbdbdb;
+`
+
+export const ProfilePageContainer = styled.section`
   background-color: #fafafa;
 `
 
@@ -85,7 +193,11 @@ export const GridImg = styled.img`
 
 export const BioItem = styled.div`
   padding: 2em 0 0;
-  text-align: center;
+
+  .row {
+    display: flex;
+    justify-content: flex-end;
+  }
 
   .bio-item__avatar-container {
     margin: 0 auto;
@@ -107,10 +219,27 @@ export const BioItem = styled.div`
   }
 
   .bio-item__username {
+    text-align: center;
     font-size: 1.9rem;
     font-weight: 300;
     letter-spacing: 0.5px;
     margin: 0.1em 0 0;
+  }
+
+  .bio-item__button {
+    cursor: pointer;
+    text-transform: uppercase;
+    font-weight: bold;
+    color: #f5ac84;
+    background: none;
+    border: 2px solid #f5ac84;
+    border-radius: 5px;
+    padding: 0.5em 0.75em;
+
+    &:hover,
+    &:focus {
+      opacity: 0.7;
+    }
   }
 `
 
@@ -143,10 +272,6 @@ export const CardLayout = styled.div`
     height: 35px;
     border-radius: 50px;
     overflow: hidden;
-
-    /* display: flex;
-    flex-direction: column;
-    justify-content: center; */
   }
 
   .avatar {
@@ -249,73 +374,16 @@ export const CardLayout = styled.div`
   }
 `
 
+export const ProfileImagesError = styled.p`
+  margin: 0;
+  padding: 4em 0 8em;
+  opacity: 0.7;
+  text-align: center;
+`
+
 export const UserImagesError = styled.p`
   margin: 0;
   padding: 6em 0;
   opacity: 0.7;
   text-align: center;
 `
-
-export const ProfileContainer = styled.section`
-  max-width: 1000px;
-  margin: 0 auto;
-`
-
-// export const PageContainer = styled.div`
-//   max-width: 580px;
-//   width: 100%;
-//   margin: 0 auto;
-// `
-
-// export const CardLayout2 = styled.div`
-//   margin: 2em 0;
-//   border: 1px solid #dbdbdb;
-//   border-radius: 3px;
-//   background-color: #fff;
-
-//   img {
-//     max-width: 100%;
-//   }
-// `
-
-// export const CardContainer = styled.div`
-//   padding: 0 1em;
-// `
-
-// export const CardHeader = styled.header`
-//   padding: 0.85em 0;
-//   display: flex;
-//   justify-content: space-between;
-//   align-items: center;
-// `
-
-// export const CardHeaderFirstItem = styled.div`
-//   display: flex;
-//   align-items: center;
-// `
-
-// export const Avatar = styled.img`
-//   width: 6%;
-//   border: none;
-//   border-radius: 50px;
-// `
-
-// export const Username = styled.span`
-//   font-size: 0.8rem;
-//   font-weight: bold;
-//   margin-left: 0.9em;
-// `
-
-// export const HeaderLink = styled.a`
-//   cursor: pointer;
-//   text-decoration: none;
-//   background-color: #38cfd9;
-//   color: white;
-//   padding: 0.25em 1em;
-//   border-radius: 10em;
-
-//   &:focus,
-//   &:hover {
-//     opacity: 0.8;
-//   }
-// `

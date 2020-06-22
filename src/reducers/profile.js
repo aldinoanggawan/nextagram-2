@@ -37,7 +37,7 @@ const profile = (state = initialState, action) => {
         images: {
           ...state.images,
           isLoading: false,
-          data: action.payload,
+          data: action.payload.sort((a, b) => b.id - a.id),
         },
       }
     case actionTypes.FETCH_USER_PROFILE_IMAGES_FAILURE:

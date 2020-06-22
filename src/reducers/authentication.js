@@ -3,6 +3,7 @@ import * as actionTypes from '../actions/actionTypes'
 const initialState = {
   isLoggedIn: localStorage.getItem('auth_token') ? true : false,
   isLoading: false,
+  authId: localStorage.getItem('id') ? localStorage.getItem('id') : null,
   message: '',
   error: '',
 }
@@ -20,6 +21,7 @@ const authentication = (state = initialState, action) => {
         ...state,
         isLoggedIn: true,
         isLoading: false,
+        authId: action.payload.user.id,
         message: action.payload.message,
       }
     case actionTypes.LOGOUT_SUCCESS:
