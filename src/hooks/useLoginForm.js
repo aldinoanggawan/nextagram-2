@@ -1,44 +1,32 @@
-import { useState } from 'react'
+import { useForm } from 'react-hook-form'
 import { useDispatch, useSelector } from 'react-redux'
 import { login } from '../actions'
 
 const useLoginForm = () => {
-  const [username, setUsername] = useState('')
-  const [password, setPassword] = useState('')
+  const { errors, handleSubmit, formState, register } = useForm({
+    mode: 'onChange',
+  })
 
   const isLoading = useSelector(state => state.authentication.isLoading)
   const dispatch = useDispatch()
 
-  const cred = {
-    username,
-    password,
+  const onSubmit = data => {
+    dispatch(login(data))
   }
 
-  const handleUsername = e => {
-    setUsername(e.target.value)
-  }
-
-  const handlePassword = e => {
-    setPassword(e.target.value)
-  }
-
-  const handleSubmit = e => {
-    e.preventDefault()
-    dispatch(login(cred))
-  }
-
-  const values = {
-    username,
-    password,
+  const formHooks = {
+    errors,
+    formState,
+    handleSubmit,
+    register,
   }
 
   const formHandler = {
-    handleSubmit,
-    handleUsername,
-    handlePassword,
+    isLoading,
+    onSubmit,
   }
 
-  return { isLoading, formHandler, values }
+  return { formHooks, formHandler }
 }
 
 export default useLoginForm

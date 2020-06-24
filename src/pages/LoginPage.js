@@ -4,9 +4,9 @@ import useLoginForm from '../hooks/useLoginForm'
 
 const LoginPage = () => {
   // custom hook
-  const { isLoading, values, formHandler } = useLoginForm()
+  const { formHooks, formHandler } = useLoginForm()
 
-  return <LoginForm isLoading={isLoading} {...formHandler} {...values} />
+  return <LoginForm {...formHandler} {...formHooks} />
 }
 
 export default LoginPage

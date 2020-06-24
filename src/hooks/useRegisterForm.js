@@ -16,15 +16,17 @@ const useRegisterForm = () => {
 
   const formHooks = {
     errors,
+    formState,
     handleSubmit,
     register,
   }
 
   const formHandler = {
+    isLoading,
     onSubmit,
   }
 
-  return { formHandler, formHooks, formState, isLoading }
+  return { formHandler, formHooks }
 }
 
 export default useRegisterForm

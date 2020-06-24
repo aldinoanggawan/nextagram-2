@@ -4,16 +4,10 @@ import useRegisterForm from '../hooks/useRegisterForm'
 import RegisterForm from '../components/RegisterForm'
 
 const RegisterPage = () => {
-  const { formHandler, formHooks, formState, isLoading } = useRegisterForm()
+  //custom hook
+  const { formHandler, formHooks } = useRegisterForm()
 
-  return (
-    <RegisterForm
-      {...formHandler}
-      {...formHooks}
-      formState={formState}
-      isLoading={isLoading}
-    />
-  )
+  return <RegisterForm {...formHandler} {...formHooks} />
 }
 
 export default RegisterPage

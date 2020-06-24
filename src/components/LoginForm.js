@@ -10,40 +10,47 @@ import {
 import { Link } from 'react-router-dom'
 
 const Form = ({
+  errors,
+  formState,
   handleSubmit,
-  handleUsername,
-  handlePassword,
+  register,
   isLoading,
-  username,
-  password,
+  onSubmit,
 }) => {
-  const inputRef = useRef()
+  const firstInputRef = useRef()
 
   useEffect(() => {
-    inputRef.current.focus()
-  }, [])
+    firstInputRef.current.focus()
+    register(firstInputRef.current, { required: true, maxLength: 20 })
+  }, [register])
 
   return (
     <AuthPageContainer>
       <FormCard>
         <FormContainer>
           <FormHeader>Login</FormHeader>
-          <form onSubmit={handleSubmit}>
+          <form onSubmit={handleSubmit(onSubmit)}>
             <Input
-              ref={inputRef}
+              name='username'
               type='text'
+              ref={firstInputRef}
               placeholder='Username'
-              value={username}
-              onChange={handleUsername}
             />
+            {errors.username?.type === 'required' && (
+              <span>Username is required</span>
+            )}
+            {errors.username?.type === 'maxLength' && (
+              <span>Username exceeded maximum length</span>
+            )}
             <Input
+              name='password'
               type='password'
+              ref={register({ required: true })}
               placeholder='Password'
-              value={password}
-              onChange={handlePassword}
             />
+            {errors.password && <span>Password is required</span>}
             <Button
-              disabled={isLoading === true || !username || !password}
+              disabled={!formState.isValid || isLoading}
               type='submit'
               value={isLoading ? 'Loading...' : 'login'}
             />
