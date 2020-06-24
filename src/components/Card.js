@@ -1,6 +1,5 @@
 import React from 'react'
 import { CardContainer, CardLayout, StyledLink } from '../styles/content'
-import LoveAction from '../love-action.svg'
 import UserImages from '../containers/UserImages'
 
 const Card = ({ id, profileImage, username }) => {
@@ -21,54 +20,15 @@ const Card = ({ id, profileImage, username }) => {
                 <StyledLink to={`/users/${id}`}>{username}</StyledLink>
               </span>
             </div>
-            <div className='card-header__item'>
+            {/* <div className='card-header__item'>
               <a className='card-header__item--button' href='/'>
                 Follow
               </a>
-            </div>
+            </div> */}
           </header>
           <main className='card-image'>
             <UserImages userId={id} />
           </main>
-          <article className='card-description'>
-            <section className='card-description__action'>
-              <span>
-                <a href='/'>
-                  <img src={LoveAction} alt='action-1' />
-                </a>
-              </span>
-            </section>
-            <section className='card-description__like'>
-              <span>
-                <a href='/'>20 likes</a>
-              </span>
-            </section>
-            <section className='card-description__text'>
-              <span className='card-description__text--username'>
-                <StyledLink to={`/users/${id}`}>{username}</StyledLink>
-              </span>
-              <span>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-                enim ad minim veniam, quis nostrud exercitation ullamco laboris
-                nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
-                in
-              </span>
-            </section>
-            <section className='card-description__time'>
-              <span>1 minute ago</span>
-            </section>
-          </article>
-          <footer className='card-footer'>
-            <form className='form'>
-              <input
-                className='form__input'
-                type='text'
-                placeholder='Add a comment...'
-              />
-              <input className='form__submit' type='submit' value='Post' />
-            </form>
-          </footer>
         </CardLayout>
       </CardContainer>
     </>

@@ -5,8 +5,9 @@ import useIsAuthenticated from './hooks/useIsAuthenticated'
 
 import Navbar from './components/Navbar'
 import Homepage from './pages/Homepage'
-import ProfilePage from './pages/ProfilePage'
 import LoginPage from './pages/LoginPage'
+import ProfilePage from './pages/ProfilePage'
+import RegisterPage from './pages/RegisterPage'
 
 const App = () => {
   const { isLoggedIn } = useIsAuthenticated()
@@ -34,6 +35,9 @@ const App = () => {
         </Route>
         <Route exact path='/login'>
           {isLoggedIn ? <Redirect to='/' /> : <LoginPage />}
+        </Route>
+        <Route exact path='/register'>
+          {isLoggedIn ? <Redirect to='/' /> : <RegisterPage />}
         </Route>
       </Switch>
     </>

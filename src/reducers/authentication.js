@@ -10,12 +10,14 @@ const initialState = {
 
 const authentication = (state = initialState, action) => {
   switch (action.type) {
+    case actionTypes.REGISTER_REQUEST:
     case actionTypes.LOGIN_REQUEST:
     case actionTypes.LOGOUT_REQUEST:
       return {
         ...state,
         isLoading: true,
       }
+    case actionTypes.REGISTER_SUCCESS:
     case actionTypes.LOGIN_SUCCESS:
       return {
         ...state,
@@ -30,6 +32,7 @@ const authentication = (state = initialState, action) => {
         isLoggedIn: false,
         isLoading: false,
       }
+    case actionTypes.REGISTER_FAILURE:
     case actionTypes.LOGIN_FAILURE:
     case actionTypes.LOGOUT_FAILURE:
       return {

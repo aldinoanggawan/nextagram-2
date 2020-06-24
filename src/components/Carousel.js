@@ -1,12 +1,8 @@
-import React from 'react'
-import styled from 'styled-components'
 import 'slick-carousel/slick/slick.css'
 import 'slick-carousel/slick/slick-theme.css'
+import React from 'react'
 import Slider from 'react-slick'
-
-const Img = styled.img`
-  text-align: center;
-`
+import { CarouselContainer } from '../styles/content'
 
 const Carousel = ({ userImages }) => {
   const settings = {
@@ -20,13 +16,15 @@ const Carousel = ({ userImages }) => {
   }
 
   return (
-    <Slider {...settings}>
-      {userImages.map(({ id, url }) => (
-        <div key={id}>
-          <Img src={url} alt='oops img not found' />
-        </div>
-      ))}
-    </Slider>
+    <CarouselContainer>
+      <Slider {...settings}>
+        {userImages.map(({ id, url }) => (
+          <div key={id}>
+            <img src={url} alt='oops img not found' />
+          </div>
+        ))}
+      </Slider>
+    </CarouselContainer>
   )
 }
 

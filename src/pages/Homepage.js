@@ -1,8 +1,9 @@
 import React from 'react'
-import useFetchUsers from '../hooks/useFetchUsers'
 import { Instagram } from 'react-content-loader'
-import { HomepageContainer, CardContainer } from '../styles/content'
+import useFetchUsers from '../hooks/useFetchUsers'
+
 import Card from '../components/Card'
+import { HomepageContainer, CardContainer } from '../styles/content'
 
 const Homepage = () => {
   // custom hook
@@ -16,8 +17,7 @@ const Homepage = () => {
             <Instagram />
           </CardContainer>
         ) : (
-          data.length !== 0 &&
-          data.map(data => <Card key={data.id} {...data} />)
+          data.length && data.map(data => <Card key={data.id} {...data} />)
         )}
       </HomepageContainer>
     </>

@@ -1,7 +1,8 @@
 import React from 'react'
+import useFetchUserImages from '../hooks/useFetchUserImages'
+
 import Carousel from '../components/Carousel'
 import Loader from '../components/Loader'
-import useFetchUserImages from '../hooks/useFetchUserImages'
 import { UserImagesError } from '../styles/content'
 
 const UserImages = ({ userId }) => {

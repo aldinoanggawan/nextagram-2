@@ -204,3 +204,43 @@ export const postImage = formData => {
     }
   }
 }
+
+const registerRequest = () => ({
+  type: actionTypes.REGISTER_REQUEST,
+})
+
+const registerSuccess = response => ({
+  type: actionTypes.REGISTER_SUCCESS,
+  payload: response,
+})
+
+const registerFailure = error => ({
+  type: actionTypes.REGISTER_FAILURE,
+  payload: error,
+})
+
+export const registerAccount = cred => {
+  return async dispatch => {
+    dispatch(registerRequest())
+    const config = {
+      'Content-Type': 'application/json',
+    }
+    try {
+      const { data } = await Axios.post(
+        'https://insta.nextacademy.com/api/v1/users/',
+        cred,
+        config
+      )
+      const { auth_token, message, user } = await data
+      localStorage.setItem('id', user.id)
+      localStorage.setItem('auth_token', auth_token)
+      dispatch(registerSuccess(data))
+      toast.success(message)
+      dispatch(push(`/users/${user.id}`))
+    } catch (error) {
+      const errorArray = await error.response.data.message
+      errorArray.map(error => toast.error(error, { autoClose: 5000 }))
+      dispatch(registerFailure(errorArray))
+    }
+  }
+}

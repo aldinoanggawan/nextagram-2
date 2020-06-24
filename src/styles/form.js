@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-export const FormContainer = styled.div`
+export const FormCard = styled.div`
   margin: 0 auto;
   padding: 3.5em 0 4em;
   max-width: 400px;
@@ -11,6 +11,22 @@ export const FormContainer = styled.div`
   box-shadow: 0px 0px 10px 3px rgba(219, 219, 219, 0.75);
 `
 
+export const FormContainer = styled.div`
+  width: 60%;
+  margin: 0 auto;
+
+  span {
+    position: absolute;
+    font-size: 0.7rem;
+    color: red;
+  }
+
+  p {
+    margin: 1.5em 0 0;
+    font-size: 0.8rem;
+  }
+`
+
 export const FormHeader = styled.h1`
   margin: 0;
   font-size: 2.3rem;
@@ -19,14 +35,14 @@ export const FormHeader = styled.h1`
 
 export const Input = styled.input`
   display: block;
-  width: 60%;
-  margin: 3em auto 0;
+  width: 100%;
+  margin-top: 3em;
   padding: 1em 1.5em;
   border: 1px solid #dbdbdb;
   border-radius: 3px;
 
   & + & {
-    margin: 2em auto 0;
+    margin-top: 2em;
   }
 
   &:focus {
@@ -42,11 +58,10 @@ export const Button = styled.input`
   text-transform: uppercase;
   font-weight: bold;
   color: #fff;
-  /* border: 2px solid #92f19e; */
   border: none;
   border-radius: 3px;
-  margin: 3em auto 0;
-  width: 60%;
+  margin-top: 3em;
+  width: 100%;
   padding: 1em 0;
   background: #00bb91;
 

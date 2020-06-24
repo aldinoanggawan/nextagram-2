@@ -81,6 +81,11 @@ export const ImgPreview = styled.img`
   object-fit: cover;
 `
 
+export const AuthPageContainer = styled.div`
+  padding: 5em 0 10em;
+  background-color: #fafafa;
+`
+
 export const CardContainer = styled.div`
   max-width: 580px;
   margin: 0 auto;
@@ -158,11 +163,6 @@ export const ImageUploadContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-`
-
-export const LoginPageContainer = styled.div`
-  padding: 5em 0 10em;
-  background-color: #fafafa;
 `
 
 export const ProfileBioContainer = styled.div`
@@ -386,4 +386,14 @@ export const UserImagesError = styled.p`
   padding: 6em 0;
   opacity: 0.7;
   text-align: center;
+`
+
+export const CarouselContainer = styled.div`
+  .slick-dots {
+    position: static;
+  }
+
+  img {
+    text-align: center;
+  }
 `
