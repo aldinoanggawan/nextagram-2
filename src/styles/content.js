@@ -106,7 +106,7 @@ export const GridContainer = styled.div`
 `
 
 export const HomepageContainer = styled.div`
-  padding-top: 0.1em;
+  padding: 0.1em 0;
   background-color: #fafafa;
 
   .pagination {
@@ -200,6 +200,12 @@ export const ImageUploadContainer = styled.div`
   align-items: center;
 `
 
+export const PaginateContainer = styled.div`
+  max-width: 580px;
+  width: 95%;
+  margin: 0 auto;
+`
+
 export const ProfileBioContainer = styled.div`
   max-width: 900px;
   width: 95%;
@@ -224,6 +230,18 @@ export const GridImg = styled.img`
   width: 100%;
   height: 100%;
   object-fit: cover;
+`
+
+export const GridImgClick = styled.div`
+  &:hover {
+    cursor: pointer;
+    opacity: 0.7;
+  }
+`
+
+export const ModalImg = styled.img`
+  max-width: 100%;
+  max-height: 88vh;
 `
 
 export const BioItem = styled.div`

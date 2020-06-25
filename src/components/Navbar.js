@@ -17,7 +17,6 @@ const Navbar = () => {
         <StyledLink to='/'>
           <img className='logo' src='/nav-logo.svg' alt='navbar-logo' />
         </StyledLink>
-        <input className='input' type='text' placeholder='Search' />
         <nav className='nav'>
           <ul className='nav__list'>
             <li className='nav__item'>

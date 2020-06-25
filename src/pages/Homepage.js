@@ -4,7 +4,11 @@ import ReactPaginate from 'react-paginate'
 import useFetchUsers from '../hooks/useFetchUsers'
 
 import Card from '../components/Card'
-import { HomepageContainer, CardContainer } from '../styles/content'
+import {
+  CardContainer,
+  HomepageContainer,
+  PaginateContainer,
+} from '../styles/content'
 
 const Homepage = () => {
   // custom hook
@@ -30,7 +34,7 @@ const Homepage = () => {
             .slice(offset, offset + perPage)
             .map(data => <Card key={data.id} {...data} />)
         )}
-        <CardContainer>
+        <PaginateContainer>
           {!isLoading && (
             <ReactPaginate
               previousLabel={'prev'}
@@ -38,14 +42,14 @@ const Homepage = () => {
               breakLabel={'...'}
               breakClassName={'break-me'}
               pageCount={pageCount}
-              marginPagesDisplayed={2}
-              pageRangeDisplayed={5}
+              marginPagesDisplayed={1}
+              pageRangeDisplayed={3}
               onPageChange={handlePageClick}
               containerClassName={'pagination'}
               activeClassName={'active'}
             />
           )}
-        </CardContainer>
+        </PaginateContainer>
       </HomepageContainer>
     </>
   )
