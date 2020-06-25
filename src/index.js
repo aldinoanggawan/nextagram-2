@@ -8,12 +8,14 @@ import App from './App'
 import store, { history } from './configureStore'
 import * as serviceWorker from './serviceWorker'
 import GlobalStyle from './styles/globalStyle'
+import { ScrollToTop } from './ScrollToTop'
 
 ReactDOM.render(
   <Provider store={store}>
     <React.StrictMode>
       <ConnectedRouter history={history}>
         <GlobalStyle />
+        <ScrollToTop />
         <App />
       </ConnectedRouter>
     </React.StrictMode>

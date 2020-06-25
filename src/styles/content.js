@@ -108,6 +108,41 @@ export const GridContainer = styled.div`
 export const HomepageContainer = styled.div`
   padding-top: 0.1em;
   background-color: #fafafa;
+
+  .pagination {
+    display: flex;
+    justify-content: space-between;
+    list-style: none;
+    padding: 0;
+
+    a {
+      padding: 0.25em 0.5em;
+      &:focus {
+        outline: none;
+      }
+      &:hover {
+        color: white;
+        background-color: #f5ac84;
+        border-radius: 3px;
+      }
+    }
+
+    li {
+      cursor: pointer;
+      padding: 0.25em 0;
+    }
+
+    .active {
+      color: white;
+      background-color: #f5ac84;
+      border-radius: 3px;
+    }
+
+    .disabled {
+      cursor: default;
+      opacity: 0;
+    }
+  }
 `
 
 export const ImageForm = styled.form`
