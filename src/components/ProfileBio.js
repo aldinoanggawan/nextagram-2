@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { ProfileBioContainer, BioItem } from '../styles/content'
+import { ProfileBioContainer, BioItem } from '../styles/profilePage'
 
 const ProfileBio = ({
   authId,

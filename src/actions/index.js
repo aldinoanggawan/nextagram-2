@@ -64,6 +64,41 @@ export const fetchUserProfile = id => {
   }
 }
 
+const fetchUserProfileCommentsRequest = () => ({
+  type: actionTypes.FETCH_USER_PROFILE_COMMENTS_REQUEST,
+})
+
+const fetchUserProfileCommentsSuccess = data => ({
+  type: actionTypes.FETCH_USER_PROFILE_COMMENTS_SUCCESS,
+  payload: data,
+})
+
+const fetchUserProfileCommentsFailure = error => ({
+  type: actionTypes.FETCH_USER_PROFILE_COMMENTS_FAILURE,
+  payload: error,
+})
+
+export const fetchUserProfileComments = imageId => {
+  return async dispatch => {
+    dispatch(fetchUserProfileCommentsRequest())
+    const auth_token = localStorage.getItem('auth_token')
+    const config = {
+      headers: {
+        Authorization: `Bearer ${auth_token}`,
+      },
+    }
+    try {
+      const { data } = await Axios.get(
+        `https://insta.nextacademy.com/api/v1/images/${imageId}/comments`,
+        config
+      )
+      dispatch(fetchUserProfileCommentsSuccess(data))
+    } catch ({ message }) {
+      dispatch(fetchUserProfileCommentsFailure(message))
+    }
+  }
+}
+
 const fetchUserProfileImagesRequest = () => ({
   type: actionTypes.FETCH_USER_PROFILE_IMAGES_REQUEST,
 })

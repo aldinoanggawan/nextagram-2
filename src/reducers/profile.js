@@ -3,6 +3,10 @@ import * as actionTypes from '../actions/actionTypes'
 const initialState = {
   isLoading: false,
   data: {},
+  comments: {
+    isLoading: false,
+    data: [],
+  },
   images: {
     isLoading: false,
     data: [],
@@ -16,6 +20,14 @@ const profile = (state = initialState, action) => {
       return {
         ...state,
         isLoading: true,
+      }
+    case actionTypes.FETCH_USER_PROFILE_COMMENTS_REQUEST:
+      return {
+        ...state,
+        comments: {
+          ...state.comments,
+          isLoading: true,
+        },
       }
     case actionTypes.FETCH_USER_PROFILE_IMAGES_REQUEST:
       return {
@@ -31,6 +43,15 @@ const profile = (state = initialState, action) => {
         isLoading: false,
         data: action.payload,
       }
+    case actionTypes.FETCH_USER_PROFILE_COMMENTS_SUCCESS:
+      return {
+        ...state,
+        comments: {
+          ...state.comments,
+          isLoading: false,
+          data: action.payload.sort((a, b) => a.id - b.id),
+        },
+      }
     case actionTypes.FETCH_USER_PROFILE_IMAGES_SUCCESS:
       return {
         ...state,
@@ -40,8 +61,9 @@ const profile = (state = initialState, action) => {
           data: action.payload.sort((a, b) => b.id - a.id),
         },
       }
-    case actionTypes.FETCH_USER_PROFILE_IMAGES_FAILURE:
     case actionTypes.FETCH_USER_PROFILE_FAILURE:
+    case actionTypes.FETCH_USER_PROFILE_COMMENTS_FAILURE:
+    case actionTypes.FETCH_USER_PROFILE_IMAGES_FAILURE:
       return {
         ...state,
         isLoading: false,

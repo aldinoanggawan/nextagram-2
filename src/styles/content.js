@@ -91,20 +91,6 @@ export const CardContainer = styled.div`
   margin: 0 auto;
 `
 
-export const GridContainer = styled.div`
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  justify-content: center;
-  gap: 1rem;
-  grid-auto-rows: 290px;
-
-  @media (max-width: 900px) {
-    gap: 5px;
-    grid-template-columns: repeat(3, 1fr);
-    grid-auto-rows: calc(33vw - 10px);
-  }
-`
-
 export const HomepageContainer = styled.div`
   padding: 0.1em 0;
   background-color: #fafafa;
@@ -206,94 +192,8 @@ export const PaginateContainer = styled.div`
   margin: 0 auto;
 `
 
-export const ProfileBioContainer = styled.div`
-  max-width: 900px;
-  width: 95%;
-  margin: 0 auto;
-  padding-bottom: 1em;
-`
-
-export const ProfileImagesContainer = styled.div`
-  max-width: 900px;
-  width: 100%;
-  margin: 0 auto;
-  padding-top: 2em;
-  text-align: center;
-  border-top: 1px solid #dbdbdb;
-`
-
 export const ProfilePageContainer = styled.section`
   background-color: #fafafa;
-`
-
-export const GridImg = styled.img`
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-`
-
-export const GridImgClick = styled.div`
-  &:hover {
-    cursor: pointer;
-    opacity: 0.7;
-  }
-`
-
-export const ModalImg = styled.img`
-  max-width: 100%;
-  max-height: 88vh;
-`
-
-export const BioItem = styled.div`
-  padding: 2em 0 0;
-
-  .row {
-    display: flex;
-    justify-content: flex-end;
-  }
-
-  .bio-item__avatar-container {
-    margin: 0 auto;
-    width: 170px;
-    height: 170px;
-    border-radius: 50%;
-    overflow: hidden;
-
-    @media (max-width: 900px) {
-      width: 140px;
-      height: 140px;
-    }
-  }
-
-  .bio-item__avatar {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-
-  .bio-item__username {
-    text-align: center;
-    font-size: 1.9rem;
-    font-weight: 300;
-    letter-spacing: 0.5px;
-    margin: 0.1em 0 0;
-  }
-
-  .bio-item__button {
-    cursor: pointer;
-    text-transform: uppercase;
-    font-weight: bold;
-    color: #f5ac84;
-    background: none;
-    border: 2px solid #f5ac84;
-    border-radius: 5px;
-    padding: 0.5em 0.75em;
-
-    &:hover,
-    &:focus {
-      opacity: 0.7;
-    }
-  }
 `
 
 export const CardLayout = styled.div`
@@ -425,13 +325,6 @@ export const CardLayout = styled.div`
     border-left: none;
     border-right: none;
   }
-`
-
-export const ProfileImagesError = styled.p`
-  margin: 0;
-  padding: 4em 0 8em;
-  opacity: 0.7;
-  text-align: center;
 `
 
 export const UserImagesError = styled.p`
