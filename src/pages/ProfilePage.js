@@ -7,7 +7,8 @@ import useIsAuthenticated from '../hooks/useIsAuthenticated'
 import ImageUpload from '../components/ImageUpload'
 import Loader from '../components/Loader'
 import ProfileBio from '../components/ProfileBio'
-import ProfileImages from '../components/ProfileImages'
+// import ProfileImages from '../components/ProfileImages'
+import ProfileImages from '../containers/ProfileImages'
 import { ProfilePageContainer } from '../styles/content'
 
 const ProfilePage = () => {
