@@ -6,11 +6,11 @@ const useImageUploadForm = () => {
   const [imageFile, setImageFile] = useState(null)
   const [previewImage, setPreviewImage] = useState(null)
 
-  const { isLoading, success } = useSelector(state => state.post)
+  const { isLoading, success } = useSelector(state => state.post.image)
   const dispatch = useDispatch()
 
   useEffect(() => {
-    if (success) {
+    if (success === true) {
       setPreviewImage(null)
       setImageFile(null)
     }

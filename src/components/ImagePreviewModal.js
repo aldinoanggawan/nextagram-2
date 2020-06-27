@@ -3,7 +3,7 @@ import { Modal } from 'react-responsive-modal'
 
 import CommentForm from './CommentForm'
 import CommentList from './CommentList'
-import { ModalComment, ModalImg } from '../styles/profilePage'
+import { ModalComment, ModalImg, ModalWarning } from '../styles/profilePage'
 
 const ImagePreviewModal = ({
   commentsIsLoading,
@@ -23,7 +23,7 @@ const ImagePreviewModal = ({
       showCloseIcon={false}
     >
       <ModalImg src={selectedImageUrl} alt='modal pic' />
-      {isLoggedIn && (
+      {isLoggedIn ? (
         <>
           <ModalComment>
             {commentsIsLoading ? (
@@ -48,6 +48,8 @@ const ImagePreviewModal = ({
             {...formHandler}
           />
         </>
+      ) : (
+        <ModalWarning>Log in to see comments !</ModalWarning>
       )}
     </Modal>
   )

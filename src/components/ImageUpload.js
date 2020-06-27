@@ -38,6 +38,7 @@ const ImageUpload = ({ isImageUploadOpen }) => {
               type='file'
               name='file'
               id='file'
+              accept='image/jpg, image/jpeg, image/png'
               multiple={false}
               onChange={handleFile}
             />

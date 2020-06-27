@@ -158,6 +158,11 @@ export const ModalSpanContainer = styled.div`
   width: 88%;
 `
 
+export const ModalWarning = styled.p`
+  opacity: 0.7;
+  margin: 0.5em 0 0;
+`
+
 export const ProfileImagesError = styled.p`
   margin: 0;
   padding: 4em 0 8em;

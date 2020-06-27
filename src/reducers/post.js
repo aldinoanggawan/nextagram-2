@@ -30,6 +30,7 @@ const post = (state = initialState, action) => {
         image: {
           ...state.image,
           isLoading: true,
+          success: false,
         },
       }
     case actionTypes.POST_COMMENT_SUCCESS:
