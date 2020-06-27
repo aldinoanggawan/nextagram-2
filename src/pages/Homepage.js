@@ -29,7 +29,7 @@ const Homepage = () => {
             <Instagram />
           </CardContainer>
         ) : (
-          data.length &&
+          data.length !== 0 &&
           data
             .slice(offset, offset + perPage)
             .map(data => <Card key={data.id} {...data} />)

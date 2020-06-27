@@ -1,6 +1,8 @@
 import React from 'react'
-import { CardContainer, CardLayout, StyledLink } from '../styles/content'
+import { Link } from 'react-router-dom'
+
 import UserImages from '../containers/UserImages'
+import { CardContainer, CardLayout, StyledLink } from '../styles/content'
 
 const Card = ({ id, profileImage, username }) => {
   return (
@@ -10,21 +12,18 @@ const Card = ({ id, profileImage, username }) => {
           <header className='card-header row'>
             <div className='card-header__item card-header__item--first'>
               <div className='avatar-container'>
-                <img
-                  className='avatar'
-                  src={profileImage}
-                  alt='random-avatar'
-                />
+                <Link to={`/users/${id}`}>
+                  <img
+                    className='avatar'
+                    src={profileImage}
+                    alt='random-avatar'
+                  />
+                </Link>
               </div>
               <span className='card-header__username'>
                 <StyledLink to={`/users/${id}`}>{username}</StyledLink>
               </span>
             </div>
-            {/* <div className='card-header__item'>
-              <a className='card-header__item--button' href='/'>
-                Follow
-              </a>
-            </div> */}
           </header>
           <main className='card-image'>
             <UserImages userId={id} />
@@ -32,22 +31,6 @@ const Card = ({ id, profileImage, username }) => {
         </CardLayout>
       </CardContainer>
     </>
-    // <PageContainer>
-    //   <CardLayout>
-    //     <CardContainer>
-    //       <CardHeader>
-    //         <CardHeaderFirstItem>
-    //           <Avatar src='./avatar.jpg' alt='card small avatar' />
-    //           <Username>{author}</Username>
-    //         </CardHeaderFirstItem>
-    //         <div>
-    //           <HeaderLink>Follow</HeaderLink>
-    //         </div>
-    //       </CardHeader>
-    //     </CardContainer>
-    //     <img src={download_url} alt='random lorem photos' />
-    //   </CardLayout>
-    // </PageContainer>
   )
 }
 

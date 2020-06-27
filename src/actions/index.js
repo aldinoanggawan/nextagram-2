@@ -198,6 +198,46 @@ export const logout = () => {
   }
 }
 
+const postCommentRequest = () => ({
+  type: actionTypes.POST_COMMENT_REQUEST,
+})
+
+const postCommentSuccess = response => ({
+  type: actionTypes.POST_COMMENT_SUCCESS,
+  payload: response,
+})
+
+const postCommentFailure = error => ({
+  type: actionTypes.POST_COMMENT_FAILURE,
+  payload: error,
+})
+
+export const postComment = (content, imageId) => {
+  return async dispatch => {
+    dispatch(postCommentRequest())
+    const auth_token = localStorage.getItem('auth_token')
+    const config = {
+      headers: {
+        Authorization: `Bearer ${auth_token}`,
+        'Content-Type': 'application/json',
+      },
+    }
+    try {
+      const { data } = await Axios.post(
+        `https://insta.nextacademy.com/api/v1/images/${imageId}/comments`,
+        content,
+        config
+      )
+      dispatch(postCommentSuccess(data))
+      toast.success('Comment added successfully')
+      dispatch(fetchUserProfileComments(imageId))
+    } catch (error) {
+      const errorResponse = error.response.data
+      dispatch(postCommentFailure(errorResponse))
+    }
+  }
+}
+
 const postImageRequest = () => ({
   type: actionTypes.POST_IMAGE_REQUEST,
 })

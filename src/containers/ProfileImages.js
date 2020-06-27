@@ -2,6 +2,7 @@ import 'react-responsive-modal/styles.css'
 import React, { useState } from 'react'
 import useFetchProfileComments from '../hooks/useFetchProfileComments'
 import useIsAuthenticated from '../hooks/useIsAuthenticated'
+import usePostCommentForm from '../hooks/usePostCommentForm'
 
 import ImagePreviewModal from '../components/ImagePreviewModal'
 import Loader from '../components/Loader'
@@ -15,9 +16,11 @@ import {
 
 const ProfileImages = ({ authId, data, isLoading, userId }) => {
   const [isModalOpen, setIsModalOpen] = useState(false)
+  const [selectedImageId, setSelectedImageId] = useState(null)
   const [selectedImageUrl, setSelectedImageUrl] = useState(null)
 
   // custom hooks
+  const { formHooks, formHandler } = usePostCommentForm(selectedImageId)
   const {
     commentsIsLoading,
     commentsData,
@@ -27,6 +30,7 @@ const ProfileImages = ({ authId, data, isLoading, userId }) => {
 
   const onOpenModal = imageId => e => {
     setIsModalOpen(true)
+    setSelectedImageId(imageId)
     setSelectedImageUrl(e.target.src)
     fetchProfileComments(imageId)
   }
@@ -61,7 +65,13 @@ const ProfileImages = ({ authId, data, isLoading, userId }) => {
               ))}
             </GridContainer>
           </ProfileImagesContainer>
-          {selectedImageUrl && <ImagePreviewModal {...modalProps} />}
+          {selectedImageUrl && (
+            <ImagePreviewModal
+              formHooks={formHooks}
+              {...modalProps}
+              formHandler={formHandler}
+            />
+          )}
         </>
       ) : (
         <ProfileImagesContainer>

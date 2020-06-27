@@ -1,22 +1,15 @@
-import moment from 'moment'
 import React from 'react'
 import { Modal } from 'react-responsive-modal'
 
-import {
-  AvatarLink,
-  ModalAvatar,
-  ModalAvatarContainer,
-  ModalAvatarImg,
-  ModalComment,
-  ModalCommentItem,
-  ModalImg,
-  ModalSpan,
-  ModalSpanContainer,
-} from '../styles/profilePage'
+import CommentForm from './CommentForm'
+import CommentList from './CommentList'
+import { ModalComment, ModalImg } from '../styles/profilePage'
 
 const ImagePreviewModal = ({
   commentsIsLoading,
   commentsData,
+  formHandler,
+  formHooks,
   isModalOpen,
   isLoggedIn,
   onCloseModal,
@@ -31,32 +24,30 @@ const ImagePreviewModal = ({
     >
       <ModalImg src={selectedImageUrl} alt='modal pic' />
       {isLoggedIn && (
-        <ModalComment>
-          {commentsIsLoading ? (
-            <p>Loading comments...</p>
-          ) : commentsData.length ? (
-            commentsData.map(({ content, created_at, id, posted_by }) => (
-              <ModalCommentItem key={id}>
-                <ModalAvatarContainer>
-                  <ModalAvatar>
-                    <AvatarLink to={`/users/${posted_by.id}`}>
-                      <ModalAvatarImg
-                        src={posted_by.profileImage}
-                        alt='avatar'
-                      />
-                    </AvatarLink>
-                  </ModalAvatar>
-                </ModalAvatarContainer>
-                <ModalSpanContainer>
-                  <ModalSpan>{content}</ModalSpan>
-                  <ModalSpan small>{moment(created_at).fromNow()}</ModalSpan>
-                </ModalSpanContainer>
-              </ModalCommentItem>
-            ))
-          ) : (
-            <p>No comment added</p>
-          )}
-        </ModalComment>
+        <>
+          <ModalComment>
+            {commentsIsLoading ? (
+              <p>Loading comments...</p>
+            ) : commentsData.length ? (
+              commentsData.map(({ content, created_at, id, posted_by }) => (
+                <CommentList
+                  key={id}
+                  content={content}
+                  created_at={created_at}
+                  id={id}
+                  posted_by={posted_by}
+                />
+              ))
+            ) : (
+              <p>No comment added</p>
+            )}
+          </ModalComment>
+          <CommentForm
+            commentsIsLoading={commentsIsLoading}
+            {...formHooks}
+            {...formHandler}
+          />
+        </>
       )}
     </Modal>
   )

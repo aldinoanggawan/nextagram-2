@@ -1,4 +1,10 @@
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
+
+export const Form = styled.form`
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1em;
+`
 
 export const FormCard = styled.div`
   margin: 0 auto;
@@ -50,6 +56,19 @@ export const Input = styled.input`
     border: 1px solid white;
     box-shadow: inset 0 0 1px 1px black;
   }
+
+  ${({ comment }) =>
+    comment &&
+    css`
+      font-size: 0.8rem;
+      width: 88%;
+      margin: 0;
+
+      &:focus {
+        box-shadow: none;
+        border: 1px solid #dbdbdb;
+      }
+    `}
 `
 
 export const Button = styled.input`
@@ -74,4 +93,14 @@ export const Button = styled.input`
     cursor: not-allowed;
     opacity: 0.5;
   }
+
+  ${({ comment }) =>
+    comment &&
+    css`
+      font-size: 0.8rem;
+      width: 10%;
+      background: #fff;
+      margin: 0;
+      color: #0095f6;
+    `}
 `
