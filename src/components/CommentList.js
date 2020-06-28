@@ -11,7 +11,7 @@ import {
   ModalSpanContainer,
 } from '../styles/profilePage'
 
-const CommentList = ({ content, created_at, id, posted_by }) => {
+const CommentList = ({ content, created_at, posted_by }) => {
   return (
     <ModalCommentItem>
       <ModalAvatarContainer>

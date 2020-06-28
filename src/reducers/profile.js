@@ -16,6 +16,7 @@ const initialState = {
   },
   likes: {
     isLoading: false,
+    liked: null,
     data: [],
     error: '',
   },
@@ -73,7 +74,8 @@ const profile = (state = initialState, action) => {
         likes: {
           ...state.likes,
           isLoading: false,
-          data: action.payload,
+          liked: action.payload.liked,
+          data: action.payload.likes.sort((a, b) => a.id - b.id),
         },
       }
     case actionTypes.FETCH_USER_PROFILE_IMAGES_SUCCESS:
@@ -116,6 +118,14 @@ const profile = (state = initialState, action) => {
           ...state.images,
           isLoading: false,
           error: action.payload,
+        },
+      }
+    case actionTypes.CLEANUP_LIKES:
+      return {
+        ...state,
+        likes: {
+          ...state.likes,
+          ...initialState.likes,
         },
       }
     case actionTypes.CLEANUP_PROFILE:

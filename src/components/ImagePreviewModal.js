@@ -15,6 +15,7 @@ import {
   ModalWarning,
 } from '../styles/profilePage'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faHeart as faHeartSolid } from '@fortawesome/free-solid-svg-icons'
 import { faHeart } from '@fortawesome/free-regular-svg-icons'
 
 const ImagePreviewModal = ({
@@ -22,12 +23,14 @@ const ImagePreviewModal = ({
   commentsIsLoading,
   formHandler,
   formHooks,
+  isImageLiked,
   isModalOpen,
   isLoggedIn,
   likesData,
   likesIsLoading,
   onCloseModal,
   selectedImageUrl,
+  toggleImageLike,
 }) => {
   return (
     <Modal
@@ -41,9 +44,15 @@ const ImagePreviewModal = ({
         <>
           <ModalLike>
             <ModalLikeItem>
-              <ModalLikeButtonContainer>
-                <FontAwesomeIcon icon={faHeart} />
-              </ModalLikeButtonContainer>
+              {isImageLiked ? (
+                <ModalLikeButtonContainer solid onClick={toggleImageLike}>
+                  <FontAwesomeIcon icon={faHeartSolid} />
+                </ModalLikeButtonContainer>
+              ) : (
+                <ModalLikeButtonContainer onClick={toggleImageLike}>
+                  <FontAwesomeIcon icon={faHeart} />
+                </ModalLikeButtonContainer>
+              )}
               <ModalLikeAvatarContainer>
                 {likesIsLoading ? (
                   <ModalIndicator>Loading likes...</ModalIndicator>

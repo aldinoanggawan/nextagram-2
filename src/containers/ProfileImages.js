@@ -4,6 +4,7 @@ import useFetchProfileComments from '../hooks/useFetchProfileComments'
 import useFetchProfileLikes from '../hooks/useFetchProfileLikes'
 import useIsAuthenticated from '../hooks/useIsAuthenticated'
 import usePostCommentForm from '../hooks/usePostCommentForm'
+import useToggleImageLike from '../hooks/useToggleImageLike'
 
 import ImagePreviewModal from '../components/ImagePreviewModal'
 import Loader from '../components/Loader'
@@ -33,6 +34,11 @@ const ProfileImages = ({ authId, data, isLoading, userId }) => {
     likesIsLoading,
   } = useFetchProfileLikes()
   const { isLoggedIn } = useIsAuthenticated()
+  const {
+    cleanupLikesOnClose,
+    isImageLiked,
+    toggleImageLike,
+  } = useToggleImageLike(selectedImageId)
 
   const onOpenModal = imageId => e => {
     setIsModalOpen(true)
@@ -44,17 +50,20 @@ const ProfileImages = ({ authId, data, isLoading, userId }) => {
 
   const onCloseModal = () => {
     setIsModalOpen(false)
+    cleanupLikesOnClose()
   }
 
   const modalProps = {
     commentsData,
     commentsIsLoading,
+    isImageLiked,
     isModalOpen,
     isLoggedIn,
     likesData,
     likesIsLoading,
     onCloseModal,
     selectedImageUrl,
+    toggleImageLike,
   }
 
   return (

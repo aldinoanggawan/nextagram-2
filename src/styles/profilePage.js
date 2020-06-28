@@ -168,7 +168,9 @@ export const ModalLikeAvatarImg = styled.img`
 `
 
 export const ModalLikeButtonContainer = styled.div`
+  cursor: pointer;
   font-size: 1.4rem;
+  color: ${({ solid }) => (solid ? 'red' : 'gray')};
 `
 
 export const ModalLikeItem = styled.div`

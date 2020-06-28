@@ -1,15 +1,20 @@
 import * as actionTypes from '../actions/actionTypes'
 
 const initialState = {
+  comment: {
+    isLoading: false,
+    success: false,
+  },
   image: {
     isLoading: false,
     image_url: null,
     success: false,
     error: '',
   },
-  comment: {
+  imageLike: {
     isLoading: false,
-    success: false,
+    liked: null,
+    error: '',
   },
 }
 
@@ -33,6 +38,15 @@ const post = (state = initialState, action) => {
           success: false,
         },
       }
+    case actionTypes.POST_IMAGE_LIKE_REQUEST:
+      return {
+        ...state,
+        imageLike: {
+          ...state.imageLike,
+          isLoading: true,
+          liked: null,
+        },
+      }
     case actionTypes.POST_COMMENT_SUCCESS:
       return {
         ...state,
@@ -52,6 +66,15 @@ const post = (state = initialState, action) => {
           success: action.payload.success,
         },
       }
+    case actionTypes.POST_IMAGE_LIKE_SUCCESS:
+      return {
+        ...state,
+        imageLike: {
+          ...state.imageLike,
+          isLoading: false,
+          liked: action.payload.liked,
+        },
+      }
     case actionTypes.POST_COMMENT_FAILURE:
       return {
         ...state,
@@ -66,6 +89,15 @@ const post = (state = initialState, action) => {
         ...state,
         image: {
           ...state.image,
+          isLoading: false,
+          error: action.payload,
+        },
+      }
+    case actionTypes.POST_IMAGE_LIKE_FAILURE:
+      return {
+        ...state,
+        imageLike: {
+          ...state.imageLike,
           isLoading: false,
           error: action.payload,
         },

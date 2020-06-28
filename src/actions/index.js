@@ -4,6 +4,10 @@ import { push } from 'connected-react-router'
 import * as actionTypes from './actionTypes'
 import { toast } from 'react-toastify'
 
+export const cleanupLikes = () => ({
+  type: actionTypes.CLEANUP_LIKES,
+})
+
 export const cleanupProfile = () => ({
   type: actionTypes.CLEANUP_PROFILE,
 })
@@ -113,14 +117,21 @@ const fetchUserProfileImageLikesFailure = error => ({
   payload: error,
 })
 
-export const fetchUserProfileImageLikes = id => {
+export const fetchUserProfileImageLikes = imageId => {
   return async dispatch => {
     dispatch(fetchUserProfileImageLikesRequest())
+    const auth_token = localStorage.getItem('auth_token')
+    const config = {
+      headers: {
+        Authorization: `Bearer ${auth_token}`,
+      },
+    }
     try {
       const { data } = await Axios.get(
-        `https://insta.nextacademy.com/api/v2/images/${id}`
+        `https://insta.nextacademy.com/api/v2/images/${imageId}`,
+        config
       )
-      dispatch(fetchUserProfileImageLikesSuccess(data.likes))
+      dispatch(fetchUserProfileImageLikesSuccess(data))
     } catch ({ message }) {
       dispatch(fetchUserProfileImageLikesFailure(message))
     }
@@ -304,6 +315,44 @@ export const postImage = formData => {
     } catch (error) {
       const errorMsg = error.message
       dispatch(postImageFailure(errorMsg))
+    }
+  }
+}
+
+const postImageLikeRequest = () => ({
+  type: actionTypes.POST_IMAGE_LIKE_REQUEST,
+})
+
+const postImageLikeSuccess = response => ({
+  type: actionTypes.POST_IMAGE_LIKE_SUCCESS,
+  payload: response,
+})
+
+const postImageLikeFailure = error => ({
+  type: actionTypes.POST_IMAGE_LIKE_FAILURE,
+  payload: error,
+})
+
+export const postImageLike = imageId => {
+  return async dispatch => {
+    dispatch(postImageLikeRequest())
+    const auth_token = localStorage.getItem('auth_token')
+    const config = {
+      headers: {
+        Authorization: `Bearer ${auth_token}`,
+      },
+    }
+    try {
+      const { data } = await Axios.post(
+        `https://insta.nextacademy.com/api/v1/images/${imageId}/toggle_like`,
+        null,
+        config
+      )
+      dispatch(postImageLikeSuccess(data))
+      dispatch(fetchUserProfileImageLikes(imageId))
+    } catch (error) {
+      const { message } = error.response.data
+      dispatch(postImageLikeFailure(message))
     }
   }
 }
