@@ -14,6 +14,11 @@ const initialState = {
     data: [],
     error: '',
   },
+  likes: {
+    isLoading: false,
+    data: [],
+    error: '',
+  },
 }
 
 const profile = (state = initialState, action) => {
@@ -28,6 +33,14 @@ const profile = (state = initialState, action) => {
         ...state,
         comments: {
           ...state.comments,
+          isLoading: true,
+        },
+      }
+    case actionTypes.FETCH_USER_PROFILE_IMAGE_LIKES_REQUEST:
+      return {
+        ...state,
+        likes: {
+          ...state.likes,
           isLoading: true,
         },
       }
@@ -54,6 +67,15 @@ const profile = (state = initialState, action) => {
           data: action.payload.sort((a, b) => a.id - b.id),
         },
       }
+    case actionTypes.FETCH_USER_PROFILE_IMAGE_LIKES_SUCCESS:
+      return {
+        ...state,
+        likes: {
+          ...state.likes,
+          isLoading: false,
+          data: action.payload,
+        },
+      }
     case actionTypes.FETCH_USER_PROFILE_IMAGES_SUCCESS:
       return {
         ...state,
@@ -74,6 +96,15 @@ const profile = (state = initialState, action) => {
         ...state,
         comments: {
           ...state.comments,
+          isLoading: false,
+          error: action.payload,
+        },
+      }
+    case actionTypes.FETCH_USER_PROFILE_IMAGE_LIKES_FAILURE:
+      return {
+        ...state,
+        likes: {
+          ...state.likes,
           isLoading: false,
           error: action.payload,
         },

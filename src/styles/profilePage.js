@@ -106,9 +106,7 @@ export const ModalAvatar = styled.div`
   margin: 0 auto;
 `
 
-export const ModalAvatarContainer = styled.div`
-  width: 10%;
-`
+export const ModalAvatarContainer = styled.div``
 
 export const ModalAvatarImg = styled.img`
   width: 100%;
@@ -117,18 +115,11 @@ export const ModalAvatarImg = styled.img`
 `
 
 export const ModalComment = styled.article`
-  margin-top: 0.5em;
-
-  p {
-    font-size: 0.9rem;
-    opacity: 0.7;
-    margin: 0;
-  }
+  margin-top: 1em;
 `
 
 export const ModalCommentItem = styled.div`
   display: flex;
-  justify-content: space-between;
   align-items: center;
   padding: 0.5em 0;
   border-bottom: 1px solid #dbdbdb;
@@ -139,6 +130,50 @@ export const ModalImg = styled.img`
   max-height: 88vh;
   display: block;
   margin: 0 auto;
+`
+
+export const ModalIndicator = styled.span`
+  font-size: 0.9rem;
+  opacity: 0.7;
+  margin: 0;
+`
+
+export const ModalLike = styled.section`
+  margin-top: 0.5em;
+`
+
+export const ModalLikeAvatar = styled.div`
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin-left: 0.2em;
+`
+
+export const ModalLikeAvatarContainer = styled.div`
+  margin-left: 0.5em;
+  display: flex;
+  flex-wrap: wrap;
+
+  span {
+    opacity: 0.7;
+    font-size: 0.8rem;
+  }
+`
+
+export const ModalLikeAvatarImg = styled.img`
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+`
+
+export const ModalLikeButtonContainer = styled.div`
+  font-size: 1.4rem;
+`
+
+export const ModalLikeItem = styled.div`
+  display: flex;
+  align-items: center;
 `
 
 export const ModalSpan = styled.span`
@@ -155,7 +190,7 @@ export const ModalSpan = styled.span`
 `
 
 export const ModalSpanContainer = styled.div`
-  width: 88%;
+  margin-left: 1em;
 `
 
 export const ModalWarning = styled.p`

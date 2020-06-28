@@ -1,6 +1,7 @@
 import 'react-responsive-modal/styles.css'
 import React, { useState } from 'react'
 import useFetchProfileComments from '../hooks/useFetchProfileComments'
+import useFetchProfileLikes from '../hooks/useFetchProfileLikes'
 import useIsAuthenticated from '../hooks/useIsAuthenticated'
 import usePostCommentForm from '../hooks/usePostCommentForm'
 
@@ -26,6 +27,11 @@ const ProfileImages = ({ authId, data, isLoading, userId }) => {
     commentsData,
     fetchProfileComments,
   } = useFetchProfileComments()
+  const {
+    fetchProfileLikes,
+    likesData,
+    likesIsLoading,
+  } = useFetchProfileLikes()
   const { isLoggedIn } = useIsAuthenticated()
 
   const onOpenModal = imageId => e => {
@@ -33,6 +39,7 @@ const ProfileImages = ({ authId, data, isLoading, userId }) => {
     setSelectedImageId(imageId)
     setSelectedImageUrl(e.target.src)
     fetchProfileComments(imageId)
+    fetchProfileLikes(imageId)
   }
 
   const onCloseModal = () => {
@@ -40,10 +47,12 @@ const ProfileImages = ({ authId, data, isLoading, userId }) => {
   }
 
   const modalProps = {
-    commentsIsLoading,
     commentsData,
+    commentsIsLoading,
     isModalOpen,
     isLoggedIn,
+    likesData,
+    likesIsLoading,
     onCloseModal,
     selectedImageUrl,
   }

@@ -99,6 +99,34 @@ export const fetchUserProfileComments = imageId => {
   }
 }
 
+const fetchUserProfileImageLikesRequest = () => ({
+  type: actionTypes.FETCH_USER_PROFILE_IMAGE_LIKES_REQUEST,
+})
+
+const fetchUserProfileImageLikesSuccess = data => ({
+  type: actionTypes.FETCH_USER_PROFILE_IMAGE_LIKES_SUCCESS,
+  payload: data,
+})
+
+const fetchUserProfileImageLikesFailure = error => ({
+  type: actionTypes.FETCH_USER_PROFILE_IMAGE_LIKES_FAILURE,
+  payload: error,
+})
+
+export const fetchUserProfileImageLikes = id => {
+  return async dispatch => {
+    dispatch(fetchUserProfileImageLikesRequest())
+    try {
+      const { data } = await Axios.get(
+        `https://insta.nextacademy.com/api/v2/images/${id}`
+      )
+      dispatch(fetchUserProfileImageLikesSuccess(data.likes))
+    } catch ({ message }) {
+      dispatch(fetchUserProfileImageLikesFailure(message))
+    }
+  }
+}
+
 const fetchUserProfileImagesRequest = () => ({
   type: actionTypes.FETCH_USER_PROFILE_IMAGES_REQUEST,
 })

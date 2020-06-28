@@ -13,7 +13,7 @@ import {
 
 const CommentList = ({ content, created_at, id, posted_by }) => {
   return (
-    <ModalCommentItem key={id}>
+    <ModalCommentItem>
       <ModalAvatarContainer>
         <ModalAvatar>
           <AvatarLink to={`/users/${posted_by.id}`}>
