@@ -3,6 +3,9 @@ import { NavLink } from 'react-router-dom'
 import useIsAuthenticated from '../hooks/useIsAuthenticated'
 import useLogout from '../hooks/useLogout'
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faCompass, faUserCircle } from '@fortawesome/free-regular-svg-icons'
+import { faSignInAlt, faSignOutAlt } from '@fortawesome/free-solid-svg-icons'
 import { StyledLink } from '../styles/content'
 import { Button, Header } from '../styles/nav'
 
@@ -26,7 +29,7 @@ const Navbar = () => {
                 className='nav__link'
                 activeClassName='nav__link--selected'
               >
-                Home
+                <FontAwesomeIcon icon={faCompass} />
               </NavLink>
             </li>
             {isLoggedIn ? (
@@ -38,12 +41,12 @@ const Navbar = () => {
                     className='nav__link'
                     activeClassName='nav__link--selected'
                   >
-                    My Profile
+                    <FontAwesomeIcon icon={faUserCircle} />
                   </NavLink>
                 </li>
                 <li className='nav__item'>
                   <Button onClick={handleLogout} className='nav__link'>
-                    Logout
+                    <FontAwesomeIcon icon={faSignOutAlt} />
                   </Button>
                 </li>
               </>
@@ -55,7 +58,7 @@ const Navbar = () => {
                   className='nav__link'
                   activeClassName='nav__link--selected'
                 >
-                  Login
+                  <FontAwesomeIcon icon={faSignInAlt} />
                 </NavLink>
               </li>
             )}

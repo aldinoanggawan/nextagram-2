@@ -3,8 +3,7 @@ import styled from 'styled-components'
 export const Header = styled.header`
   background-color: white;
   padding: 0.5em 0;
-  border: 1px solid #dbdbdb;
-  border-top: none;
+  border-bottom: 1px solid #dbdbdb;
   position: sticky;
   z-index: 1;
   top: 0;
@@ -48,13 +47,12 @@ export const Header = styled.header`
   }
 
   .nav__item + .nav__item {
-    margin-left: 1em;
+    margin-left: 1.3em;
   }
 
   .nav__link {
     color: black;
-    text-decoration: none;
-    text-transform: uppercase;
+    font-size: 1.5rem;
   }
 
   .nav__link--selected {

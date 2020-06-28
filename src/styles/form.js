@@ -31,6 +31,10 @@ export const FormContainer = styled.div`
     margin: 1.5em 0 0;
     font-size: 0.8rem;
   }
+
+  @media (max-width: 400px) {
+    width: 75%;
+  }
 `
 
 export const FormHeader = styled.h1`

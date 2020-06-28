@@ -3,15 +3,17 @@ import * as actionTypes from '../actions/actionTypes'
 const initialState = {
   isLoading: false,
   data: {},
+  error: '',
   comments: {
     isLoading: false,
     data: [],
+    error: '',
   },
   images: {
     isLoading: false,
     data: [],
+    error: '',
   },
-  error: '',
 }
 
 const profile = (state = initialState, action) => {
@@ -62,12 +64,28 @@ const profile = (state = initialState, action) => {
         },
       }
     case actionTypes.FETCH_USER_PROFILE_FAILURE:
-    case actionTypes.FETCH_USER_PROFILE_COMMENTS_FAILURE:
-    case actionTypes.FETCH_USER_PROFILE_IMAGES_FAILURE:
       return {
         ...state,
         isLoading: false,
         error: action.payload,
+      }
+    case actionTypes.FETCH_USER_PROFILE_COMMENTS_FAILURE:
+      return {
+        ...state,
+        comments: {
+          ...state.comments,
+          isLoading: false,
+          error: action.payload,
+        },
+      }
+    case actionTypes.FETCH_USER_PROFILE_IMAGES_FAILURE:
+      return {
+        ...state,
+        images: {
+          ...state.images,
+          isLoading: false,
+          error: action.payload,
+        },
       }
     case actionTypes.CLEANUP_PROFILE:
       return {
