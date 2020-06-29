@@ -1,6 +1,7 @@
 import 'slick-carousel/slick/slick.css'
 import 'slick-carousel/slick/slick-theme.css'
 import React from 'react'
+import GracefulImg from 'react-graceful-image'
 import Slider from 'react-slick'
 import { CarouselContainer } from '../styles/content'
 
@@ -19,9 +20,13 @@ const Carousel = ({ userImages }) => {
     <CarouselContainer>
       <Slider {...settings}>
         {userImages.map(({ id, url }) => (
-          <div key={id}>
-            <img src={url} alt='oops img not found' />
-          </div>
+          <GracefulImg
+            noLazyLoad={true}
+            retry={{ count: 0, delay: 0, accumulate: 'false' }}
+            key={id}
+            src={url}
+            alt={id}
+          />
         ))}
       </Slider>
     </CarouselContainer>

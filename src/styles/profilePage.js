@@ -1,5 +1,6 @@
-import styled, { css } from 'styled-components'
+import GracefulImg from 'react-graceful-image'
 import { Link } from 'react-router-dom'
+import styled, { css } from 'styled-components'
 
 export const AvatarLink = styled(Link)``
 
@@ -85,7 +86,7 @@ export const BioItem = styled.div`
   }
 `
 
-export const GridImg = styled.img`
+export const GridImg = styled(GracefulImg)`
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -108,7 +109,7 @@ export const ModalAvatar = styled.div`
 
 export const ModalAvatarContainer = styled.div``
 
-export const ModalAvatarImg = styled.img`
+export const ModalAvatarImg = styled(GracefulImg)`
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -125,7 +126,7 @@ export const ModalCommentItem = styled.div`
   border-bottom: 1px solid #dbdbdb;
 `
 
-export const ModalImg = styled.img`
+export const ModalImg = styled(GracefulImg)`
   max-width: 100%;
   max-height: 88vh;
   display: block;
@@ -161,7 +162,7 @@ export const ModalLikeAvatarContainer = styled.div`
   }
 `
 
-export const ModalLikeAvatarImg = styled.img`
+export const ModalLikeAvatarImg = styled(GracefulImg)`
   width: 100%;
   height: 100%;
   object-fit: cover;
