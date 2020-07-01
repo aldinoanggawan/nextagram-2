@@ -5,7 +5,7 @@ import useFetchProfileImages from '../hooks/useFetchProfileImages'
 import useIsAuthenticated from '../hooks/useIsAuthenticated'
 
 import ImageUpload from '../components/ImageUpload'
-import Loader from '../components/Loader'
+import { ProfilepageLoader } from '../components/Loader'
 import ProfileBio from '../components/ProfileBio'
 import ProfileImages from '../containers/ProfileImages'
 import { ProfilePageContainer } from '../styles/content'
@@ -27,7 +27,7 @@ const ProfilePage = () => {
   return (
     <ProfilePageContainer>
       {isLoading ? (
-        <Loader />
+        <ProfilepageLoader />
       ) : Object.keys(data).length || images.data.length ? (
         <>
           <ProfileBio

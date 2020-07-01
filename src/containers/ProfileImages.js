@@ -7,7 +7,7 @@ import usePostCommentForm from '../hooks/usePostCommentForm'
 import useToggleImageLike from '../hooks/useToggleImageLike'
 
 import ImagePreviewModal from '../components/ImagePreviewModal'
-import Loader from '../components/Loader'
+import { Loader } from '../components/Loader'
 import {
   GridContainer,
   GridImg,

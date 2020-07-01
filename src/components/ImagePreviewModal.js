@@ -4,6 +4,7 @@ import { Modal } from 'react-responsive-modal'
 import CommentForm from './CommentForm'
 import CommentList from './CommentList'
 import LikeList from './LikeList'
+import { CommentLoader, LikeLoader } from './Loader'
 import {
   ModalComment,
   ModalImg,
@@ -38,6 +39,7 @@ const ImagePreviewModal = ({
       onClose={onCloseModal}
       center={true}
       showCloseIcon={false}
+      styles={{ modal: { minWidth: '300px' } }}
     >
       <ModalImg src={selectedImageUrl} alt='modal pic' />
       {isLoggedIn ? (
@@ -55,7 +57,8 @@ const ImagePreviewModal = ({
               )}
               <ModalLikeAvatarContainer>
                 {likesIsLoading ? (
-                  <ModalIndicator>Loading likes...</ModalIndicator>
+                  // <ModalIndicator>Loading likes...</ModalIndicator>
+                  <LikeLoader />
                 ) : likesData.length !== 0 ? (
                   likesData.map(({ id, profileImage }) => (
                     <LikeList key={id} id={id} profileImage={profileImage} />
@@ -69,7 +72,7 @@ const ImagePreviewModal = ({
 
           <ModalComment>
             {commentsIsLoading ? (
-              <ModalIndicator>Loading comments...</ModalIndicator>
+              <CommentLoader />
             ) : commentsData.length !== 0 ? (
               commentsData.map(({ content, created_at, id, posted_by }) => (
                 <CommentList

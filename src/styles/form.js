@@ -65,7 +65,7 @@ export const Input = styled.input`
     comment &&
     css`
       font-size: 0.8rem;
-      width: 88%;
+      width: 84%;
       margin: 0;
 
       &:focus {
@@ -102,7 +102,7 @@ export const Button = styled.input`
     comment &&
     css`
       font-size: 0.8rem;
-      width: 10%;
+      width: 15%;
       background: #fff;
       margin: 0;
       color: #0095f6;

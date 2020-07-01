@@ -1,5 +1,4 @@
 import React from 'react'
-import { Instagram } from 'react-content-loader'
 import ReactPaginate from 'react-paginate'
 import useFetchUsers from '../hooks/useFetchUsers'
 
@@ -9,6 +8,7 @@ import {
   faChevronRight,
 } from '@fortawesome/free-solid-svg-icons'
 import Card from '../components/Card'
+import { HomepageLoader } from '../components/Loader'
 import {
   CardContainer,
   HomepageContainer,
@@ -31,7 +31,7 @@ const Homepage = () => {
       <HomepageContainer>
         {isLoading ? (
           <CardContainer>
-            <Instagram />
+            <HomepageLoader />
           </CardContainer>
         ) : (
           data.length !== 0 && (
